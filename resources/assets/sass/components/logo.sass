@@ -1,0 +1,167 @@
+.logo
+  position: relative
+  height: $width
+  width: ($width + 4px) * 8
+
+  &__item
+    color: white
+    width: 100%
+    height: 100%
+    position: relative
+    z-index: 1
+    overflow: hidden
+    background: black
+    display: flex
+    transition: opacity .1s .2s
+
+    &[data-glitch="2"]
+      position: absolute
+      left: -2px
+      top: 0
+      clip: rect(0,900px,0,0)
+      animation: noise-anim 2s infinite linear alternate-reverse
+      z-index: 4
+      opacity: .9
+
+      svg
+        filter: drop-shadow(-1px 0 red)
+
+    &[data-glitch="3"]
+      position: absolute
+      left: 2px
+      top: 0
+      clip: rect(0,900px,0,0)
+      animation: noise-anim-2 3s infinite linear alternate-reverse
+      z-index: 3
+      opacity: .9
+
+      svg
+        filter: drop-shadow(1px 0 blue)
+
+    &[data-glitch="4"]
+      position: absolute
+      left: 0
+      top: 0
+      clip: rect(0,900px,0,0)
+      animation: noise-anim-2 4s infinite linear alternate-reverse
+      z-index: 2
+
+      svg
+        filter: drop-shadow(-1px 0 green)
+
+    > div
+      display: inline-block
+      position: absolute
+      left: 50%
+      top: 50%
+      width: $width
+      height: $width
+      transition: transform .2s
+
+      @for $i from 1 through 8
+        &:nth-child(#{$i})
+          $width: $width + 4px
+          $calc: $width*($i - 1) - 4*$width
+          transform: translate(calc(#{$calc}), -50%)
+
+      svg
+        position: relative
+        width: $width!important
+        height: $width!important
+        opacity: 1
+        left: 0
+        top: 0
+        transform: translateY(0) rotateX(0)
+        font-size: 22px
+        transition: all .4s
+
+      &[data-show="1"]
+        svg
+          &:nth-child(2)
+            position: absolute
+            opacity: 0
+            transform: translateY(-50%) rotateX(90deg)
+
+          &:nth-child(3)
+            position: absolute
+            opacity: 0
+            transform: translateY(50%) rotateX(-90deg)
+
+      &[data-show="2"]
+        svg
+          &:nth-child(3)
+            position: absolute
+            opacity: 0
+            transform: translateY(-50%) rotateX(90deg)
+
+          &:nth-child(1)
+            position: absolute
+            opacity: 0
+            transform: translateY(50%) rotateX(-90deg)
+
+      &[data-show="3"]
+        svg
+          &:nth-child(1)
+            position: absolute
+            opacity: 0
+            transform: translateY(-50%) rotateX(90deg)
+
+          &:nth-child(2)
+            position: absolute
+            opacity: 0
+            transform: translateY(50%) rotateX(-90deg)
+
+@keyframes noise-anim
+  $steps:20
+  @for $i from 0 through $steps
+    #{percentage($i*(1/$steps))}
+      clip: rect(random(100)+px,9999px,random(100)+px,0)
+
+@keyframes noise-anim-2
+  $steps:20
+  @for $i from 0 through $steps
+    #{percentage($i*(1/$steps))}
+      clip: rect(random(100)+px,9999px,random(100)+px,0)
+
+@keyframes noise-anim-3
+  $steps:20
+  @for $i from 0 through $steps
+    #{percentage($i*(1/$steps))}
+      clip: rect(random(100)+px,9999px,random(100)+px,0)
+
+svg:not(:root).svg-inline--fa
+  overflow: visible
+
+.svg-inline--fa
+  display: inline-block
+  font-size: inherit
+  height: 1em
+  overflow: visible
+  vertical-align: -.125em
+
+  &.fa-w-6
+    width: .375em
+
+  &.fa-w-8
+    width: .5em
+
+  &.fa-w-10
+    width: .625em
+
+  &.fa-w-12
+    width: .75em
+
+  &.fa-w-14
+    width: .875em
+
+  &.fa-w-16
+    width: 1em
+
+.fa-layers svg.svg-inline--fa
+  bottom: 0
+  left: 0
+  margin: auto
+  position: absolute
+  right: 0
+  top: 0
+  transform-origin: center center

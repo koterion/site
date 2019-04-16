@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Koterion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="{{asset('css/loader.css')}}">
+</head>
+<body class="home">
+<main id="app">
+    <vue-loader></vue-loader>
+    <vue-header></vue-header>
+    <router-view></router-view>
+</main>
+<link class="styles" rel="stylesheet">
+<script src="{{asset('js/app.js')}}"></script>
+</body>
+</html>
