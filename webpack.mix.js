@@ -2,7 +2,6 @@ const mix = require('laravel-mix')
 const autoprefixer = require('autoprefixer')
 const Dotenv = require('dotenv-webpack')
 const fs = require('fs')
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 let getFiles = function (dir) {
   return fs.readdirSync(dir).filter(file => {
