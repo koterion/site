@@ -1,0 +1,17 @@
+=underline($color:inherit,$h:1px)
+  position: relative
+
+  &:before
+    content: ''
+    position: absolute
+    top: 100%
+    left: 0
+    background: $color
+    height: $h
+    display: block
+    width: 0
+    transition: width .4s
+
+  &:hover
+    &:before
+      width: 100%

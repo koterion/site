@@ -1,14 +1,16 @@
 $width: 20px
+
+@import "config/variables"
 @import "components/logo"
 
 body
   &:not(.ready),&.start
     overflow: hidden
-    background-color: #000
+    background-color: $bgColor
 
     .loader
       transition: background-color .1s .5s
-      background-color: #000
+      background-color: $bgColor
 
   &.start
     .loader

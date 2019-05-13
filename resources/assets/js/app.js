@@ -21,13 +21,30 @@ Vue.component('vue-loader', Loader)
 
 Vue.prototype.$axios = axios
 
+Vue.mixin({
+  methods: {
+    on: function (elem, event, func) {
+      if (elem.addEventListener) {
+        elem.addEventListener(event, func)
+      } else {
+        elem.attachEvent('on' + event, func)
+      }
+    }
+  }
+})
+
 const router = new VueRouter({
   mode: 'history',
   routes
 })
 
 router.beforeEach((to, from, next) => {
-  document.body.querySelector('link.styles').href = '/css/pages/' + to.name + '.css'
+  if (to.name) {
+    document.body.querySelector('link.styles').href = '/css/pages/' + to.name + '.css'
+  } else {
+    document.body.querySelector('link.styles').href = '/css/pages/page.css'
+  }
+
   next()
 })
 

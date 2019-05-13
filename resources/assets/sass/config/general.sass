@@ -1,6 +1,39 @@
 @import "~sanitize.css"
-$width: 20px
+@import "mixin"
+@import "variables"
+
+html
+  font-size: 10px
+  @media (max-width: $desktop)
+    font-size: 9.5px
+
+  @media (max-width: $laptop)
+    font-size: 9px
+
+  @media (max-width: $pad)
+    font-size: 8.5px
+
+  @media (max-width: $padmini)
+    font-size: 8px
+
+  @media (max-width: $mobile)
+    font-size: 7.5px
+
+  @media (min-width: $pad)
+    *
+      -webkit-user-select: text
+      user-select: none
 
 body
-  background-color: white
+  background-color: $bgColor
   min-height: 100vh
+  max-width: 100%
+  min-width: 320px
+  overflow: hidden
+  position: relative
+  font-size: 14px
+
+.box
+  max-width: 1920px
+  margin: 0 auto
+  padding: 0 3rem

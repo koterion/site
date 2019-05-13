@@ -8,7 +8,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    loading: true
+    loading: true,
+    menu: false,
+    tab : true
   },
   actions,
   getters,
