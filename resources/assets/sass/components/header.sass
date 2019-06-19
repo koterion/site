@@ -6,6 +6,20 @@
   padding: 6rem
   margin: 0 auto
 
+  &.active
+    .header
+      &__logo
+        .logo__item
+          background-color: $bgColorMenu
+
+      &__info
+        transform: none
+
+      &__menu
+        &--a
+          transition: color .4s, opacity 1.5s
+          opacity: 1
+
   &__burger
     position: relative
     width: 40px
@@ -15,6 +29,7 @@
     display: block
     background: none
     border: none
+    z-index: 4
 
     &:hover,
     &:active
@@ -68,68 +83,47 @@
         opacity: 0
         transition: ease .3s
 
-  &__menu
+  &__logo
+    z-index: 4
+
+  &__info
     position: fixed
-    height: calc(100vh - 6rem)
-    top: 6rem
+    height: 100vh
+    width: 100%
+    top: 0
     left: 0
-    background: black
-    display: inline-flex
-    flex-direction: column
-    align-items: flex-start
-    padding: 2rem
+    background: $bgColorMenu
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    padding: 27vh 16vw 1rem 16vw
     transform: translateX(-100%)
-    transition: transform .4s ease-in-out
     z-index: 3
 
-    &.active
-      transform: none
+  &__menu
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 100%
 
     &--a
-      color: #ffffff
+      color: #BDBDBD
+      font-size: 3.5rem
+      letter-spacing: 0.175rem
       text-decoration: none
-      +underline($color: #fff)
-
-    &--btn
-      $btn-w: 8rem
-      $btn-h: 4rem
-      position: fixed
-      width: $btn-w
-      height: $btn-h
-      z-index: 2
-      left: -$btn-w/2 + $btn-h/2
-      top: 50%
-      transform: translateY(-50%) rotate(90deg)
-      cursor: pointer
-      background: transparent
-      color: #000
-      outline: none
-      line-height: 1
-      font-size: 2rem
-      transition: all .4s
-      display: flex
-      align-items: center
-      justify-content: center
-      border: 1px solid #000
-
-      &:before
-        content: attr(value)
-        position: absolute
-        left: 0
-        top: 0
-        width: 100%
-        height: 100%
-        display: flex
-        align-items: center
-        justify-content: center
-        color: #fff
-        background: #000
-        clip: rect($btn-h,0,0,$btn-w)
-        transition: all .5s ease
+      opacity: 0
 
       &:hover
-        &:before
-          clip: rect(0,$btn-w,$btn-h,0)
+        color: #FB5F54
+
+  &__social
+    display: flex
+    justify-content: center
+    align-items: center
+
+    &--a
+      display: inline-block
+      margin: 0 3rem
 
   &__tab
     width: 40px

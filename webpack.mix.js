@@ -28,6 +28,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
       autoprefixer
     ]
   })
-
+  .copy('resources/assets/img/*.*', 'public/img')
   .version()
   .browserSync(process.env.APP_URL)
+
