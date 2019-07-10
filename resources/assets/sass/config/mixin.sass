@@ -15,3 +15,27 @@
   &:hover
     &:before
       width: 100%
+
+=mx-btn($top: 3rem, $width: 28rem)
+  display: inline-flex
+  justify-content: center
+  align-items: center
+  text-decoration: none
+  min-width: $width
+  height: 8rem
+  color: #bbbbbb
+  padding: 1rem 2rem
+  margin-top: $top
+  background-color: transparent
+  outline: none
+  border: 1px solid #808080
+  letter-spacing: 1px
+  font-size: 2.4rem
+  cursor: pointer
+  transition: color .4s, border-color .4s, background-color .4s
+  border-radius: 3px
+
+  &:hover
+    color: $bgColor
+    border-color: $orange
+    background-color: $orange

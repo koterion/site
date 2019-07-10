@@ -12,7 +12,7 @@
     <vue-header></vue-header>
     <router-view></router-view>
 </main>
-<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
 <link class="styles" rel="stylesheet">
 <script src="{{asset('js/app.js')}}"></script>
 </body>

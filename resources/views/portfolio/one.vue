@@ -1,6 +1,8 @@
 <template>
     <div class="work__item">
-        <div class="image"></div>
+        <figure class="image">
+            <img src="/img/poftfolio.png" alt="">
+        </figure>
         <div class="image-bg"></div>
     </div>
 </template>
