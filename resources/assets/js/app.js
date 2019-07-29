@@ -39,11 +39,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name) {
-    document.body.querySelector('link.styles').href = '/css/pages/' + to.name + '.css'
-  } else {
-    document.body.querySelector('link.styles').href = '/css/pages/page.css'
-  }
+  store.dispatch('toggleMenu', false)
 
   next()
 })

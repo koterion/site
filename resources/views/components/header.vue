@@ -33,7 +33,7 @@
                 </a>
             </nav>
         </section>
-        <div :class="'header__tab' + (this.$store.state.tab ? ' row' : ' col')" @click="toggleTab">
+        <div :class="'header__tab ' + (this.$store.state.tab ? this.$store.state.tab : 'row')" @click="toggleTab">
             <div class="header__tab--item"></div>
             <div class="header__tab--item"></div>
         </div>

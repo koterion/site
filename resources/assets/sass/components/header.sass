@@ -1,6 +1,6 @@
 .header
   display: flex
-  justify-content: space-between
+  justify-content: space-around
   align-items: center
   background: $bgColor
   padding: 6rem
@@ -21,7 +21,9 @@
           opacity: 1
 
   &__burger
-    position: relative
+    position: fixed
+    left: 6rem
+    top: 6rem
     width: 40px
     height: 34px
     color: #71616E
@@ -144,18 +146,22 @@
     width: 40px
     height: 40px
     cursor: pointer
-    
+    position: fixed
+    right: 6rem
+    top: 6rem
+    z-index: 11
+
     &:hover,&:active
       .header__tab--item
         &:before,&:after
           border-color: #C8C8C8
 
-    &.col
+    &.row
       .header__tab--item
         &:before,&:after
           width: 18px
 
-    &.row
+    &.col
       .header__tab--item
         &:before,&:after
           width: 100%

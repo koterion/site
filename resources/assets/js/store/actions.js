@@ -2,8 +2,8 @@ export default {
   fetchLoading ({commit}, data) {
     commit('changeLoading', data)
   },
-  toggleMenu ({commit}) {
-    commit('changeMenu')
+  toggleMenu ({commit}, data) {
+    commit('changeMenu', data)
   },
   toggleTab ({commit}) {
     commit('changeTab')

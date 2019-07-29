@@ -1,6 +1,3 @@
-@import "../config/general"
-@import "../components/header"
-
 .work
   display: flex
   flex-wrap: wrap
@@ -17,21 +14,43 @@
     &.row
       .work
         &__item
-          animation: item-rev .8s forwards reverse
+          animation: itemRev .8s forwards reverse
+
+          &:nth-child(odd)
+            .work__item--image
+              animation: imageOddRev 1.2s forwards reverse
+
+          &:nth-child(even)
+            .work__item--image
+              animation: imageEvenRev 1.2s forwards reverse
 
           &--image
-            animation: image-rev 1.2s forwards reverse
+            .icons
+              transition: all .2s .6s
+
+          &--block
+            animation: blockRev .4s .8s forwards
+            transition: opacity .4s .4s
 
     &.col
       .work
         &__item
           animation: item .8s .4s forwards
 
-          &--image
-            animation: image 1.2s forwards
+          &:nth-child(odd)
+            .work__item--image
+              animation: imageOdd 1.2s forwards
 
+          &:nth-child(even)
+            .work__item--image
+              animation: imageEven 1.2s forwards
+
+          &--image
             .icons
               opacity: 0
+              left: -1.2rem
+              top: -1.2rem
+              transition: all .2s .4s
 
             .image
               background: #1C1C1C
@@ -41,6 +60,7 @@
 
           &--block
             animation: block .4s .8s forwards
+            transition: opacity .4s
             opacity: 0
 
           &:hover
@@ -74,8 +94,8 @@
       height: 52.5rem
       width: 55%
       left: 0
+      top: 0
       position: relative
-      transition: left .4s ease-in-out,transform .4s ease-in-out, height .3s .4s ease-in-out, padding .3s .4s ease-in-out, width .3s .4s ease-in-out
 
       .image
         overflow: hidden
@@ -91,11 +111,10 @@
 
       .icons
         position: absolute
-        left: 0
-        top: 0
+        left: 1.2rem
+        top: 1.2rem
         display: flex
-        padding: 1.2rem
-        transition: opacity .2s .5s
+        padding: 0
 
       .square,.circle
         width: 12px
@@ -136,7 +155,6 @@
     &--block
       width: 38%
       opacity: 1
-      transition: opacity .4s
       overflow: hidden
       display: flex
       flex-direction: column
@@ -193,11 +211,14 @@
 @keyframes item
   0%
     width: 100%
+    max-height: 100%
+    height: 52.5rem
 
   50%
     width: 100%
     height: calc(45vw/1.2)
     max-height: 60rem
+    max-width: 100%
 
   100%
     width: 45vw
@@ -205,7 +226,7 @@
     max-width: 72rem
     max-height: 60rem
 
-@keyframes item-rev
+@keyframes itemRev
   0%
     width: 100%
 
@@ -213,6 +234,7 @@
     width: 100%
     height: calc(45vw/1.2)
     max-height: 60rem
+    max-width: 100%
 
   100%
     width: 45vw
@@ -220,7 +242,41 @@
     max-width: 72rem
     max-height: 60rem
 
-@keyframes image
+@keyframes imageOdd
+  0%
+    position: relative
+  1%
+    left: 100%
+    transform: translateX(-100%)
+    position: absolute
+    max-width: 100%
+    max-height: 100%
+  33%
+    position: absolute
+    left: 0
+    transform: translateX(0)
+    padding: 3.6rem
+    height: 48rem
+    max-height: 60rem
+    max-width: 72rem
+    width: 55%
+  66%
+    position: absolute
+    height: calc(45vw/1.2)
+    max-height: 60rem
+    padding: 0
+    width: 45vw
+  100%
+    position: absolute
+    left: 0
+    transform: translateX(0)
+    width: 45vw
+    height: calc(45vw/1.2)
+    max-width: 72rem
+    max-height: 60rem
+    padding: 0
+
+@keyframes imageOddRev
   0%
     position: relative
   1%
@@ -231,16 +287,19 @@
     position: absolute
     left: 0
     transform: translateX(0)
-    padding: 3.6rem
     height: 48rem
+    max-height: 100%
+    padding: 3.6rem
     width: 55%
   66%
     position: absolute
     left: 0
     transform: translateX(0)
     height: calc(45vw/1.2)
-    padding: 0
+    max-height: 60rem
+    max-width: 100%
     width: 45vw
+    padding: 0
   100%
     position: absolute
     left: 0
@@ -251,31 +310,69 @@
     max-height: 60rem
     padding: 0
 
-@keyframes image-rev
+@keyframes imageEven
   0%
     position: relative
   1%
-    left: 100%
-    transform: translateX(-100%)
-    position: absolute
-  33%
-    position: absolute
     left: 0
     transform: translateX(0)
+    position: absolute
+    max-width: 100%
+  33%
+    position: absolute
+    left: 100%
+    transform: translateX(-100%)
     padding: 3.6rem
     height: 48rem
+    max-height: 100%
+    max-width: 72rem
     width: 55%
   66%
     position: absolute
-    left: 0
-    transform: translateX(0)
+    left: 100%
+    transform: translateX(-100%)
     height: calc(45vw/1.2)
+    max-height: 60rem
     padding: 0
     width: 45vw
   100%
     position: absolute
+    left: 100%
+    transform: translateX(-100%)
+    width: 45vw
+    height: calc(45vw/1.2)
+    max-width: 72rem
+    max-height: 60rem
+    padding: 0
+
+@keyframes imageEvenRev
+  0%
+    position: relative
+  1%
     left: 0
     transform: translateX(0)
+    position: absolute
+  33%
+    position: absolute
+    left: 100%
+    transform: translateX(-100%)
+    height: 48rem
+    max-height: 100%
+    padding: 3.6rem
+    width: 55%
+  66%
+    position: absolute
+    left: 100%
+    transform: translateX(-100%)
+    height: calc(45vw/1.2)
+    max-height: 60rem
+    max-width: 100%
+    width: 45vw
+    padding: 0
+  100%
+    position: absolute
+    left: 100%
+    transform: translateX(-100%)
     width: 45vw
     height: calc(45vw/1.2)
     max-width: 72rem
@@ -295,9 +392,3 @@
     display: flex
     flex-direction: column
     justify-content: center
-
-@keyframes opacity
-  0%
-    opacity: 0
-  100%
-    opacity: 1

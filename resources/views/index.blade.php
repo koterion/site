@@ -13,7 +13,8 @@
     <router-view></router-view>
 </main>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
-<link class="styles" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('css/general.css')}}">
+<link rel="stylesheet" href="{{asset('css/main.css')}}">
 <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

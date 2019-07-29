@@ -10,7 +10,7 @@ export default new Vuex.Store({
   state: {
     loading: true,
     menu: false,
-    tab : true
+    tab : ''
   },
   actions,
   getters,

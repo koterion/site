@@ -3,7 +3,7 @@
         <nav class="work__time">
             <button v-for="(item, index) in items" :key="item.id" :class="['work__time--item', { active: active === item.id }]" @click="active = item.id">{{item.year}}</button>
         </nav>
-        <div :class="'work__list' + (this.$store.state.tab ? ' row' : ' col')">
+        <div :class="'work__list ' + this.$store.state.tab">
             <div class="work__item" v-for="(item, index) in items" :key="item.id">
                 <div class="work__item--block">
                     <h3 class="work__item--title">{{item.title}}</h3>
