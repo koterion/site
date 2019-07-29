@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Portfolio;
+use App\Models\Portfolio;
 use App\Traits\Controllers\HasPagination;
 use Illuminate\Http\Request;
 

@@ -16,20 +16,20 @@ use Faker\Generator as Faker;
 $factory->define(\App\Models\Portfolio::class, function (Faker $faker) {
     $author = App\User::first();
 
-    $carousel = array(
-        $faker->imageUrl($width = 640, $height = 480),
-        $faker->imageUrl($width = 640, $height = 480),
-        $faker->imageUrl($width = 640, $height = 480),
-        $faker->imageUrl($width = 640, $height = 480),
-    );
-
     return [
-        'title'     => $title = $faker->text(100),
-        'author_id' => !empty($author) ? $author->id : '',
-        'content'   => $faker->paragraph(10, true),
-        'carousel'  => $faker->imageUrl($width = 640, $height = 480),
-        'image'     => $faker->imageUrl($width = 640, $height = 480),
-        'site_url'  => $faker->url
+        'title'       => $faker->text(40),
+        'author_id'   => !empty($author) ? $author->id : '',
+        'content'     => $faker->paragraph(10, true),
+        'description' => $faker->paragraph(3, true),
+        'carousel'    => json_encode(array(
+            $faker->imageUrl($width = 640, $height = 480),
+            $faker->imageUrl($width = 640, $height = 480),
+            $faker->imageUrl($width = 640, $height = 480),
+            $faker->imageUrl($width = 640, $height = 480),
+        )),
+        'image'       => $faker->imageUrl($width = 640, $height = 480),
+        'site_url'    => $faker->url,
+        'realize_at'  => $faker->date(),
     ];
 });
 

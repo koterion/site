@@ -15,5 +15,8 @@ export default {
     } else {
       state.tab = 'col'
     }
+  },
+  updatePortfolio (state, data) {
+    state.portfolio = data
   }
 }

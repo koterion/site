@@ -9,6 +9,7 @@ import store from './store'
 
 import Header from '../../views/components/header'
 import Loader from '../../views/components/loader'
+import Footer from '../../views/components/footer'
 
 import axios from 'axios'
 
@@ -18,6 +19,7 @@ Vue.use(VueHeadful)
 Vue.component('vue-headful', VueHeadful)
 Vue.component('vue-header', Header)
 Vue.component('vue-loader', Loader)
+Vue.component('vue-footer', Footer)
 
 Vue.prototype.$axios = axios
 
