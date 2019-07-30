@@ -1,21 +1,21 @@
 <template>
-  <div class="work box">
-    <nav class="work__time">
+  <div class="portfolio box">
+    <nav class="portfolio__time">
 <!--      <button v-for="item in portfolio.data" :key="item.id"-->
-<!--              :class="['work__time&#45;&#45;item', { active: active === item.id }]" @click="active = item.id">{{item.year}}-->
+<!--              :class="['portfolio__time&#45;&#45;item', { active: active === item.id }]" @click="active = item.id">{{item.year}}-->
 <!--      </button>-->
     </nav>
-    <div :class="'work__list ' + this.$store.state.tab">
-      <div class="work__item" v-for="item in portfolio" :key="item.id">
-        <div class="work__item--block">
-          <h3 class="work__item--title">{{item.title}}</h3>
-          <p class="work__item--text">{{item.description}}</p>
-          <div class="work__item--footer">
-            <a class="work__item--btn" :href="item.site_url" target="_blank">Site</a>
-            <router-link :to="{name: 'portfolio.one', params: {id: item.id}}" class="work__item--btn">More</router-link>
+    <div :class="'portfolio__list ' + this.$store.state.tab">
+      <div class="portfolio__item" v-for="item in portfolio" :key="item.id">
+        <div class="portfolio__item--block">
+          <h3 class="portfolio__item--title">{{item.title}}</h3>
+          <p class="portfolio__item--text">{{item.description}}</p>
+          <div class="portfolio__item--footer">
+            <a class="portfolio__item--btn" :href="item.site_url" target="_blank">Site</a>
+            <router-link :to="{name: 'portfolio.one', params: {id: item.id}}" class="portfolio__item--btn">More</router-link>
           </div>
         </div>
-        <div class="work__item--image">
+        <div class="portfolio__item--image">
           <div class="icons">
             <div class="square"></div>
             <div class="triangle"></div>

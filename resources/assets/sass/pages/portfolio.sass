@@ -1,4 +1,7 @@
-.work
+@import "~@glidejs/glide/src/assets/sass/glide.core"
+@import "~@glidejs/glide/src/assets/sass/glide.theme"
+
+.portfolio
   display: flex
   flex-wrap: wrap
   justify-content: space-between
@@ -12,16 +15,16 @@
     margin-top: 9rem
 
     &.row
-      .work
+      .portfolio
         &__item
           animation: itemRev .8s forwards reverse
 
           &:nth-child(odd)
-            .work__item--image
+            .portfolio__item--image
               animation: imageOddRev 1.2s forwards reverse
 
           &:nth-child(even)
-            .work__item--image
+            .portfolio__item--image
               animation: imageEvenRev 1.2s forwards reverse
 
           &--image
@@ -33,16 +36,16 @@
             transition: opacity .4s .4s
 
     &.col
-      .work
+      .portfolio
         &__item
           animation: item .8s .4s forwards
 
           &:nth-child(odd)
-            .work__item--image
+            .portfolio__item--image
               animation: imageOdd 1.2s forwards
 
           &:nth-child(even)
-            .work__item--image
+            .portfolio__item--image
               animation: imageEven 1.2s forwards
 
           &--image
@@ -64,7 +67,7 @@
             opacity: 0
 
           &:hover
-            .work
+            .portfolio
               &__item
                 &--block
                   opacity: 1
