@@ -17,7 +17,12 @@ class PortfolioController extends Controller
 
     public function all(Request $request)
     {
-        return Portfolio::all();
+        $collection = Portfolio::all()->sortBy('year')->groupBy('year');
+
+        return [
+            'data'  => $collection,
+            'years' => $collection->keys()
+        ];
     }
 
     /**

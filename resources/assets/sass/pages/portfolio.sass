@@ -1,216 +1,5 @@
 @import "~@glidejs/glide/src/assets/sass/glide.core"
-@import "~@glidejs/glide/src/assets/sass/glide.theme"
-
-.portfolio
-  display: flex
-  flex-wrap: wrap
-  justify-content: space-between
-  max-width: 160rem
-
-  &__list
-    width: 100%
-    display: flex
-    flex-wrap: wrap
-    justify-content: space-between
-    margin-top: 9rem
-
-    &.row
-      .portfolio
-        &__item
-          animation: itemRev .8s forwards reverse
-
-          &:nth-child(odd)
-            .portfolio__item--image
-              animation: imageOddRev 1.2s forwards reverse
-
-          &:nth-child(even)
-            .portfolio__item--image
-              animation: imageEvenRev 1.2s forwards reverse
-
-          &--image
-            .icons
-              transition: all .2s .6s
-
-          &--block
-            animation: blockRev .4s .8s forwards
-            transition: opacity .4s .4s
-
-    &.col
-      .portfolio
-        &__item
-          animation: item .8s .4s forwards
-
-          &:nth-child(odd)
-            .portfolio__item--image
-              animation: imageOdd 1.2s forwards
-
-          &:nth-child(even)
-            .portfolio__item--image
-              animation: imageEven 1.2s forwards
-
-          &--image
-            .icons
-              opacity: 0
-              left: -1.2rem
-              top: -1.2rem
-              transition: all .2s .4s
-
-            .image
-              background: #1C1C1C
-
-            img
-              opacity: 1
-
-          &--block
-            animation: block .4s .8s forwards
-            transition: opacity .4s
-            opacity: 0
-
-          &:hover
-            .portfolio
-              &__item
-                &--block
-                  opacity: 1
-
-                &--image
-                  img
-                    opacity: .05
-
-  &__item
-    width: 100%
-    display: flex
-    align-items: center
-    justify-content: space-between
-    position: relative
-    height: 52.5rem
-
-    &:nth-child(even)
-      flex-direction: row-reverse
-      margin-left: auto
-
-    &:not(:last-child)
-      margin-bottom: 16rem
-
-    &--image
-      background: #1C1C1C
-      padding: 3.6rem
-      height: 52.5rem
-      width: 55%
-      left: 0
-      top: 0
-      position: relative
-
-      .image
-        overflow: hidden
-        height: 100%
-        width: 100%
-        margin: 0
-        background-color: #C8C8C8
-
-      img
-        width: 100%
-        opacity: .4
-        transition: opacity .4s
-
-      .icons
-        position: absolute
-        left: 1.2rem
-        top: 1.2rem
-        display: flex
-        padding: 0
-
-      .square,.circle
-        width: 12px
-        height: 12px
-        border: 2px solid #333
-
-      .triangle
-        width: 14px
-        height: 12px
-        position: relative
-        border-bottom: 2px solid #333
-        overflow: hidden
-        border-right: 1px solid transparent
-        border-left: 1px solid transparent
-        margin: 0 8px 0 9px
-
-        &:before,&:after
-          content: ''
-          position: absolute
-          display: block
-          width: 2px
-          height: 120%
-          background-color: #333
-          top: -2%
-
-        &:before
-          left: 20%
-          transform: rotate(28deg)
-
-        &:after
-          right: 20%
-          transform: rotate(-28deg)
-
-      .circle
-        border-radius: 50%
-
-
-    &--block
-      width: 38%
-      opacity: 1
-      overflow: hidden
-      display: flex
-      flex-direction: column
-      justify-content: center
-
-    &--title
-      font-size: 4.2rem
-      letter-spacing: 2px
-      line-height: 1.2
-      color: #cccccc
-      font-weight: 400
-      margin: 0
-
-    &--text
-      color: #bbbbbb
-      font-size: 2.4rem
-      line-height: 3rem
-      margin-top: 2rem
-
-    &--footer
-      display: flex
-      justify-content: space-between
-      align-items: center
-
-    &--btn
-      +mx-btn($top: 6rem, $width: 48%)
-
-  &__time
-    width: 100%
-    display: flex
-    justify-content: space-between
-    align-items: center
-    padding-top: 3rem
-    border-top: 1px solid #352B33
-
-    &--item
-      background: none
-      outline: none
-      border: none
-      color: #595158
-      font-weight: 600
-      font-size: 2rem
-      font-family: $font
-      transition: color .4s
-      padding: 0
-      margin: 0
-      cursor: pointer
-      
-      &:hover
-        color: $orange
-      
-      &.active
-        color: #eee
+//@import "~@glidejs/glide/src/assets/sass/glide.theme"
 
 @keyframes item
   0%
@@ -396,3 +185,252 @@
     display: flex
     flex-direction: column
     justify-content: center
+.portfolio
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+  max-width: 160rem
+
+  &__list
+    width: 100%
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    margin-top: 9rem
+
+    &.row
+      .portfolio
+        &__item
+          animation: itemRev .8s forwards reverse
+
+          &:nth-child(odd)
+            .portfolio__item--image
+              animation: imageOddRev 1.2s forwards reverse
+
+          &:nth-child(even)
+            .portfolio__item--image
+              animation: imageEvenRev 1.2s forwards reverse
+
+          &--image
+            .icons
+              transition: all .2s .6s
+
+          &--block
+            animation: blockRev .4s .8s forwards
+            transition: opacity .4s .4s
+
+    &.col
+      .portfolio
+        &__item
+          animation: item .8s .4s forwards
+
+          &:nth-child(odd)
+            .portfolio__item--image
+              animation: imageOdd 1.2s forwards
+
+          &:nth-child(even)
+            .portfolio__item--image
+              animation: imageEven 1.2s forwards
+
+          &--image
+            .icons
+              opacity: 0
+              left: -1.2rem
+              top: -1.2rem
+              transition: all .2s .4s
+
+            .image
+              background: #1C1C1C
+
+            img
+              opacity: 1
+
+          &--block
+            animation: block .4s .8s forwards
+            transition: opacity .4s
+            opacity: 0
+
+          &:hover
+            .portfolio
+              &__item
+                &--block
+                  opacity: 1
+
+                &--image
+                  img
+                    opacity: .05
+
+  &__item
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    position: relative
+    height: 52.5rem
+
+    &:nth-child(even)
+      flex-direction: row-reverse
+      margin-left: auto
+
+    &:not(:last-child)
+      margin-bottom: 16rem
+
+    &--image
+      background: #1C1C1C
+      padding: 3.6rem
+      height: 52.5rem
+      width: 55%
+      left: 0
+      top: 0
+      position: relative
+
+      .image
+        overflow: hidden
+        height: 100%
+        width: 100%
+        margin: 0
+        background-color: #C8C8C8
+
+      img
+        width: 100%
+        opacity: .4
+        transition: opacity .4s
+
+    &--block
+      width: 38%
+      opacity: 1
+      overflow: hidden
+      display: flex
+      flex-direction: column
+      justify-content: center
+
+    &--title
+      font-size: 4.2rem
+      letter-spacing: 2px
+      line-height: 1.2
+      color: #cccccc
+      font-weight: 400
+      margin: 0
+
+    &--text
+      color: #bbbbbb
+      font-size: 2.4rem
+      line-height: 3rem
+      margin-top: 2rem
+
+    &--footer
+      display: flex
+      justify-content: space-between
+      align-items: center
+
+    &--btn
+      +mx-btn($top: 6rem, $width: 48%)
+
+  &__time
+    width: 100%
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding-top: 3rem
+    border-top: 1px solid #352B33
+
+    &--item
+      background: none
+      outline: none
+      border: none
+      color: #595158
+      font-weight: 600
+      font-size: 2rem
+      font-family: $font
+      transition: color .4s
+      padding: 0
+      margin: 0
+      cursor: pointer
+
+      &:hover
+        color: $orange
+
+      &.active
+        color: #eee
+
+.icons
+  position: absolute
+  left: 1.2rem
+  top: 1.2rem
+  display: flex
+  padding: 0
+
+  .square,.circle
+    width: 12px
+    height: 12px
+    border: 2px solid #333
+
+  .triangle
+    width: 14px
+    height: 12px
+    position: relative
+    border-bottom: 2px solid #333
+    overflow: hidden
+    border-right: 1px solid transparent
+    border-left: 1px solid transparent
+    margin: 0 8px 0 9px
+
+    &:before,&:after
+      content: ''
+      position: absolute
+      display: block
+      width: 2px
+      height: 120%
+      background-color: #333
+      top: -2%
+
+    &:before
+      left: 20%
+      transform: rotate(28deg)
+
+    &:after
+      right: 20%
+      transform: rotate(-28deg)
+
+  .circle
+    border-radius: 50%
+
+.carousel
+  max-width: 127.2rem
+  padding: 3.6rem
+  background: #1C1C1C
+  position: relative
+  margin: 0 auto
+
+  &__image
+    height: 67.5rem
+    margin: 0
+    overflow: hidden
+
+    img
+      width: 100%
+
+  .glide
+    &__bullets
+      position: absolute
+      bottom: -7rem
+      transform: translate3d(0,100%,0)
+      left: 0
+
+    &__bullet
+      border: none
+      width: 2.4rem
+      height: 2.4rem
+      border-radius: 50%
+      background-color: #595158
+      transition: background-color .4s
+      outline: none
+
+      &:not(:first-child)
+        margin-left: 3.6rem
+
+      &--active
+        background-color: #fb5f54
+
+.clear
+  clear: both

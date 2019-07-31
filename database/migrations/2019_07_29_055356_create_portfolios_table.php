@@ -23,9 +23,9 @@ class CreatePortfoliosTable extends Migration
                 $table->text('content')->nullable();
                 $table->string('image')->nullable();
                 $table->string('carousel')->nullable();
-                $table->string('site_url')->nullable();
+                $table->string('site')->nullable();
                 $table->unsignedInteger('author_id')->index();
-                $table->timestamp('realize_at')->nullable();
+                $table->text('year')->nullable();
                 $table->timestamps();
             });
         } else {

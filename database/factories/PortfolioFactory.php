@@ -28,8 +28,8 @@ $factory->define(\App\Models\Portfolio::class, function (Faker $faker) {
             $faker->imageUrl($width = 640, $height = 480),
         )),
         'image'       => $faker->imageUrl($width = 640, $height = 480),
-        'site_url'    => $faker->url,
-        'realize_at'  => $faker->date(),
+        'site'        => $faker->url,
+        'year'        => $faker->year($max = 'now'),
     ];
 });
 

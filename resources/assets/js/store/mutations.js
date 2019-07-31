@@ -18,5 +18,8 @@ export default {
   },
   updatePortfolio (state, data) {
     state.portfolio = data
+  },
+  updateYearTab (state, data) {
+    state.year = data
   }
 }

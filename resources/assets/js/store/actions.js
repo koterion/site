@@ -14,9 +14,13 @@ export default {
     try {
       const response = await Portfolio.index(Portfolio.getUrl(), page)
       commit('updatePortfolio', response.data)
+      commit('updateYearTab', response.data.years[response.data.years.length - 1])
     } catch (e) {
       commit('updatePortfolio', false)
       throw new Error('Get portfolio')
     }
+  },
+  clickYearTab ({ commit }, year) {
+    commit('updateYearTab', year)
   }
 }
