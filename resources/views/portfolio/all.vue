@@ -44,18 +44,10 @@
         }
       }
     },
-    watch: {
-      '$route.query.page' () {
-        this.$store.dispatch('fetchPortfolio', this.$route.query.page)
-      }
-    },
     computed: {
       ...mapGetters({
         portfolio: 'getPortfolio'
       })
-    },
-    created () {
-      this.$store.dispatch('fetchPortfolio')
     }
   }
 </script>

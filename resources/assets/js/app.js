@@ -49,8 +49,10 @@ router.beforeEach((to, from, next) => {
 const app = new Vue({
   router,
   store,
-  mounted () {
+  async mounted () {
     let classList = document.body.classList
+    await store.dispatch('fetchPortfolio')
+
     setTimeout(function () {
       classList.add('start')
       setTimeout(function () {
@@ -60,7 +62,6 @@ const app = new Vue({
           store.dispatch('fetchLoading', false)
         }, 600)
       }, 500)
-    }, 4000)
-
+    }, 2000)
   }
 }).$mount('#app')
