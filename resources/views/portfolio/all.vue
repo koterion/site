@@ -2,7 +2,10 @@
   <div class="portfolio box">
     <nav class="portfolio__time">
       <button v-for="year in portfolio.years"
-              :class="['portfolio__time--item', { active: currentYear === year }]" @click="changeYear(year)">{{year}}
+              :class="['portfolio__time--item', { active: currentYear === year }]" @click="changeYear(year)">
+        <span v-if="year !== portfolio.years[portfolio.years.length - 1]">{{year}}</span>
+        <span v-else>Now</span>
+        <span class="dop">portfolio</span>
       </button>
     </nav>
     <div :class="'portfolio__list ' + $store.state.tab">

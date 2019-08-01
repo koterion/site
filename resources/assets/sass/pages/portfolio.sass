@@ -1,5 +1,4 @@
 @import "~@glidejs/glide/src/assets/sass/glide.core"
-//@import "~@glidejs/glide/src/assets/sass/glide.theme"
 
 @keyframes item
   0%
@@ -346,12 +345,33 @@
       padding: 0
       margin: 0
       cursor: pointer
+      position: relative
+
+      & .dop
+        display: none
+        color: #eeeeee
+        font-size: 1.6rem
+        font-weight: 400
+        letter-spacing: 3px
+        bottom: -1rem
+        left: 50%
+        transform: translate(-50%, 100%)
+        word-break: normal
+        position: absolute
 
       &:hover
         color: $orange
 
       &.active
         color: #eee
+
+        & .dop
+          display: block
+
+  &__one
+    &--btn
+      +mx-btn()
+      margin-left: auto
 
 .icons
   position: absolute
@@ -400,7 +420,7 @@
   padding: 3.6rem
   background: #1C1C1C
   position: relative
-  margin: 0 auto
+  margin: 0 auto 20rem auto
 
   &__image
     height: 67.5rem
@@ -415,7 +435,7 @@
       position: absolute
       bottom: -7rem
       transform: translate3d(0,100%,0)
-      left: 0
+      left: -3.6rem
 
     &__bullet
       border: none
@@ -425,12 +445,19 @@
       background-color: #595158
       transition: background-color .4s
       outline: none
+      cursor: pointer
 
       &:not(:first-child)
         margin-left: 3.6rem
 
       &--active
         background-color: #fb5f54
+
+  .portfolio__one--btn
+    position: absolute
+    bottom: -7rem
+    transform: translate3d(0,100%,0)
+    right: -3.6rem
 
 .clear
   clear: both

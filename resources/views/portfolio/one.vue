@@ -17,10 +17,12 @@
         <div class="glide__bullets" data-glide-el="controls[nav]">
           <button v-for="(image, index) in images" class="glide__bullet" :data-glide-dir="'='+index"></button>
         </div>
+        <a class="portfolio__one--btn" :href="data.site" target="_blank">Visit the website</a>
       </div>
     </div>
     <div class="gui">
-      {{site.content}}
+      <h1>{{data.title}}</h1>
+      {{data.content}}
       <div class="clear"></div>
     </div>
   </div>
@@ -33,13 +35,13 @@
   let glide = new Glide('.glide', {
     type: 'carousel',
     perView: 1,
-    // autoplay: 4000
+    autoplay: 6500
   })
 
   export default {
     data: function () {
       return {
-        site: '',
+        data: '',
         images: ''
       }
     },
@@ -47,8 +49,8 @@
       Portfolio.show(Portfolio.getUrl(),this.$route.params.id)
         .then(
           response => {
-            this.site = response.data
-            this.images = JSON.parse(this.site.carousel)
+            this.data = response.data
+            this.images = JSON.parse(this.data.carousel)
             setTimeout(function (){
               glide.mount()
             })
