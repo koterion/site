@@ -42,24 +42,31 @@
     data: function () {
       return {
         data: '',
-        images: ''
+        images: '',
+        ids: {
+          prev: '',
+          next: ''
+        }
       }
     },
     beforeCreate() {
       Portfolio.show(Portfolio.getUrl(),this.$route.params.id)
         .then(
           response => {
-            this.data = response.data
-            this.images = JSON.parse(this.data.carousel)
+            this.data = response.data.current
+            this.images = JSON.parse(response.data.current.carousel)
+            this.ids.prev = response.data.prev
+            this.ids.next = response.data.next
+
             setTimeout(function (){
               glide.mount()
             })
           },
           error => {
-            throw new Error('Show Receiver. ' + error.message)
+            throw new Error('Show Portfolio. ' + error.message)
           }
         )
-    }
+    },
   }
 </script>
 

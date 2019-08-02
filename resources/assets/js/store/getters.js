@@ -4,5 +4,8 @@ export default {
   },
   getYear: (state) => {
     return state.year
+  },
+  getOnlyPortfolio: (state, getters) => {
+    return Object.values(getters.getPortfolio)
   }
 }

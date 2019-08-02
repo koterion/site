@@ -22,5 +22,6 @@ export default {
   },
   clickYearTab ({ commit }, year) {
     commit('updateYearTab', year)
-  }
+  },
+
 }
