@@ -12,22 +12,23 @@ export default new Vuex.Store({
     menu: false,
     tab: '',
     portfolio: {
-      years: {},
-      data: {},
+      all: {
+        years: {},
+        group: {},
+        collection: {}
+      },
       one: {
-        data: {
+        current: {
           title: '',
           content: '',
           site: ''
         },
-        images: {},
-        ids: {
-          prev: '',
-          next: ''
-        }
+        images: '',
+        prev: '',
+        next: ''
       }
     },
-    year: 0,
+    year: 0
   },
   actions,
   getters,

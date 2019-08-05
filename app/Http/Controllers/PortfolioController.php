@@ -17,11 +17,13 @@ class PortfolioController extends Controller
 
     public function all(Request $request)
     {
-        $collection = Portfolio::all()->sortBy('year')->groupBy('year');
+        $collection = Portfolio::all()->sortBy('year');
+        $group = $collection->groupBy('year');
 
         return [
-            'data'  => $collection,
-            'years' => $collection->keys()
+            'group'      => $group,
+            'collection' => $collection->sortBy('id'),
+            'years'      => $group->keys(),
         ];
     }
 
@@ -44,7 +46,11 @@ class PortfolioController extends Controller
                 return $value->id > $id;
             })->min('id');
 
-            $concatenated = collect(['prev' => $previous, 'current' => $current, 'next'=>$next]);
+            $concatenated = collect([
+                'prev'    => $previous,
+                'current' => $current,
+                'next'    => $next
+            ]);
 
             return $concatenated;
         }

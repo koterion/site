@@ -50,7 +50,7 @@ const app = new Vue({
   router,
   store,
   async mounted () {
-    let classList = document.body.classList
+    const classList = document.body.classList
     await store.dispatch('fetchPortfolio')
 
     setTimeout(function () {
@@ -62,6 +62,6 @@ const app = new Vue({
           store.dispatch('fetchLoading', false)
         }, 600)
       }, 500)
-    }, 2000)
+    })
   }
 }).$mount('#app')

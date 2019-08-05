@@ -1,6 +1,6 @@
 export default {
   getPortfolio: (state) => {
-    return state.portfolio
+    return state.portfolio.all
   },
   getYear: (state) => {
     return state.year

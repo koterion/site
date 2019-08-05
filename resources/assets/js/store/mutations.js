@@ -17,15 +17,13 @@ export default {
     }
   },
   updatePortfolio (state, data) {
-    state.portfolio = data
+    state.portfolio.all = data
   },
   updateYearTab (state, data) {
     state.year = data
   },
   updatePortfolioOne (state, data) {
-    state.portfolio.one.data = data.current
+    state.portfolio.one.data = data
     state.portfolio.one.images = JSON.parse(data.current.carousel)
-    state.portfolio.one.ids.prev = data.prev
-    state.portfolio.one.ids.next = data.next
   }
 }

@@ -9,7 +9,7 @@
       </button>
     </nav>
     <div :class="'portfolio__list ' + $store.state.tab">
-      <div class="portfolio__item" v-for="item in portfolio.data[currentYear]">
+      <div class="portfolio__item" v-for="item in portfolio.group[currentYear]">
         <div class="portfolio__item--block">
           <h3 class="portfolio__item--title">{{item.title}}</h3>
           <p class="portfolio__item--text">{{item.description}}</p>
