@@ -21,5 +21,11 @@ export default {
   },
   updateYearTab (state, data) {
     state.year = data
+  },
+  updatePortfolioOne (state, data) {
+    state.portfolio.one.data = data.current
+    state.portfolio.one.images = JSON.parse(data.current.carousel)
+    state.portfolio.one.ids.prev = data.prev
+    state.portfolio.one.ids.next = data.next
   }
 }

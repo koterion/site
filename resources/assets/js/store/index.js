@@ -13,9 +13,21 @@ export default new Vuex.Store({
     tab: '',
     portfolio: {
       years: {},
-      data: {}
+      data: {},
+      one: {
+        data: {
+          title: '',
+          content: '',
+          site: ''
+        },
+        images: {},
+        ids: {
+          prev: '',
+          next: ''
+        }
+      }
     },
-    year: 0
+    year: 0,
   },
   actions,
   getters,

@@ -23,5 +23,13 @@ export default {
   clickYearTab ({ commit }, year) {
     commit('updateYearTab', year)
   },
-
+  async fetchPortfolioOne ({ commit }, id = 1) {
+    try {
+      const response = await Portfolio.show(Portfolio.getUrl(),id)
+      commit('updatePortfolioOne', response.data)
+    } catch (e) {
+      commit('updatePortfolioOne', false)
+      throw new Error('Show Portfolio. ' + e.message)
+    }
+  },
 }

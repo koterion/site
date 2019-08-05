@@ -5,7 +5,7 @@ export default {
   getYear: (state) => {
     return state.year
   },
-  getOnlyPortfolio: (state, getters) => {
-    return Object.values(getters.getPortfolio)
+  getPortfolioOne: (state) => {
+    return state.portfolio.one
   }
 }
