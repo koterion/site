@@ -23,7 +23,7 @@ export default {
     state.year = data
   },
   updatePortfolioOne (state, data) {
-    state.portfolio.one.data = data
+    state.portfolio.one = data
     state.portfolio.one.images = JSON.parse(data.current.carousel)
   }
 }

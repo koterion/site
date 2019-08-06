@@ -85,6 +85,45 @@
         opacity: 0
         transition: ease .3s
 
+  &__back
+    position: fixed
+    left: 6rem
+    top: 6rem
+    width: 40px
+    height: 34px
+    color: #71616E
+    cursor: pointer
+    display: block
+    background: none
+    border: none
+    z-index: 4
+
+    &:hover,
+    &:active
+      color: #C8C8C8
+
+    &:before,
+    &--item
+      position: absolute
+      border-top: 2px solid
+
+    &:before
+      content: ''
+      top: 50%
+      width: 20px
+      height: 20px
+      left: 1px
+      border-left: 2px solid
+      transform: translateY(-50%) rotate(-45deg)
+      transition: ease .2s
+
+    &--item
+      top: 50%
+      width: 100%
+      left: 0
+      transform: translateY(-50%)
+      transition: ease .2s
+
   &__logo
     z-index: 4
 
