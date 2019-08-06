@@ -17,6 +17,7 @@
       width: 100%
 
 =mx-btn($top: 3rem, $width: 28rem)
+  position: relative
   display: inline-flex
   justify-content: center
   align-items: center
@@ -35,13 +36,53 @@
   transition: color .4s, border-color .4s, background-color .4s
   border-radius: 3px
 
-  &:hover
-    color: $bgColor
-    border-color: $orange
-    background-color: $orange
+  .text, &:before, &:after
+    content: attr(data-text)
+    position: absolute
+    top: 0
+    display: none
+    justify-content: center
+    align-items: center
+    width: 100%
+    height: 8rem
+    padding: 1rem 2rem
+    border: 1px solid #808080
+    clip: rect(0,900px,0,0)
+
+  .text
+    left: 0
+    animation: glitch-1 5s infinite linear alternate-reverse
+    filter: drop-shadow(-1px 0 green)
+    z-index: 2
+
+  &:after
+    left: 1px
+    animation: glitch-2 4s infinite linear alternate-reverse
+    filter: drop-shadow(1px 0 blue)
+    z-index: 3
+    opacity: .9
+
+  &:before
+    left: -1px
+    animation: glitch-3 3s infinite linear alternate-reverse
+    filter: drop-shadow(-1px 0 red)
+    z-index: 4
+    opacity: .9
+
+  &:not(.disabled):hover
+    .text,&:before,&:after
+      display: inline-flex
 
   &.disabled
     border-color: #574A54
     color: #574A54
     cursor: no-drop
     background-color: transparent
+
+$anim: 3
+@for $i from 1 through $anim
+  @keyframes glitch-#{$i}
+    $steps:20
+    @for $a from 0 through $steps
+      #{percentage($a*(1/$steps))}
+        clip: rect(random(40)-10+px,9999px,random(100)+px,0)

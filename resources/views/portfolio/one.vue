@@ -26,13 +26,9 @@
       <div class="clear"></div>
     </div>
     <div class="portfolio__one--footer">
-      <router-link v-if="portfolio.prev" :to="{name: 'portfolio.one', params: {id: portfolio.prev}}" class="btn">
-        previous project
-      </router-link>
+      <btn v-if="portfolio.prev" :link="{name: 'portfolio.one', params: {id: portfolio.prev}}" :text="'previous project'"/>
       <div v-else class="disabled btn">previous project</div>
-      <router-link v-if="portfolio.next" :to="{name: 'portfolio.one', params: {id: portfolio.next}}" class="btn">
-        next project
-      </router-link>
+      <btn v-if="portfolio.next" :link="{name: 'portfolio.one', params: {id: portfolio.next}}" :text="'next project'"/>
       <div v-else class="disabled btn">next project</div>
     </div>
   </div>
@@ -41,6 +37,7 @@
 <script>
   import Glide from '@glidejs/glide'
   import { mapGetters } from 'vuex'
+  import Btn from '../components/btn'
 
   let glide = new Glide('.glide', {
     type: 'carousel',
@@ -60,6 +57,9 @@
           }).mount()
         })
       }
+    },
+    components: {
+      Btn
     },
     beforeCreate () {
       this.$store.dispatch('fetchPortfolioOne', this.$route.params.id).then(() => {
