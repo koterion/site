@@ -10,11 +10,6 @@
   import Logo from './logo'
 
   export default {
-    data: function () {
-      return {
-        loading: true
-      }
-    },
     components: {Logo}
   }
 </script>
