@@ -1,10 +1,29 @@
 @import "~@glidejs/glide/src/assets/sass/glide.core"
 
-@keyframes item
+@keyframes itemOdd
   0%
     width: 100%
     max-height: 100%
     height: 52.5rem
+
+  50%
+    width: 100%
+    height: calc(45vw/1.2)
+    max-height: 60rem
+    max-width: 100%
+
+  99%
+    max-width: 100rem
+
+  100%
+    width: 45vw
+    height: calc(45vw/1.2)
+    max-width: 72rem
+    max-height: 60rem
+
+@keyframes itemOddRev
+  0%
+    width: 100%
 
   50%
     width: 100%
@@ -48,15 +67,24 @@
     max-width: 72rem
     max-height: 60rem
 
-@keyframes itemRev
+@keyframes itemEvenRev
   0%
     width: 100%
+
+  25%
+    margin-top: 0
 
   50%
     width: 100%
     height: calc(45vw/1.2)
     max-height: 60rem
     max-width: 100%
+
+  98.9%
+    margin-top: -76rem
+
+  99%
+    margin-top: 0
 
   100%
     width: 45vw
@@ -105,30 +133,25 @@
     left: 100%
     transform: translateX(-100%)
     position: absolute
+    max-width: 100%
+    width: 55%
   33%
-    position: absolute
     left: 0
     transform: translateX(0)
+    padding: 3.6rem
+    width: 45vw
+    max-width: 72rem
+  66%
+    padding: 0
     height: 48rem
     max-height: 100%
-    padding: 3.6rem
-    width: 55%
-  66%
-    position: absolute
-    left: 0
-    transform: translateX(0)
-    height: calc(45vw/1.2)
-    max-height: 60rem
-    max-width: 100%
-    width: 45vw
-    padding: 0
   100%
     position: absolute
     left: 0
     transform: translateX(0)
     width: 45vw
-    height: calc(45vw/1.2)
     max-width: 72rem
+    height: calc(45vw/1.2)
     max-height: 60rem
     padding: 0
 
@@ -174,30 +197,25 @@
     left: 0
     transform: translateX(0)
     position: absolute
+    max-width: 100%
+    width: 55%
   33%
-    position: absolute
     left: 100%
     transform: translateX(-100%)
+    padding: 3.6rem
+    width: 45vw
+    max-width: 72rem
+  66%
+    padding: 0
     height: 48rem
     max-height: 100%
-    padding: 3.6rem
-    width: 55%
-  66%
-    position: absolute
-    left: 100%
-    transform: translateX(-100%)
-    height: calc(45vw/1.2)
-    max-height: 60rem
-    max-width: 100%
-    width: 45vw
-    padding: 0
   100%
     position: absolute
     left: 100%
     transform: translateX(-100%)
     width: 45vw
-    height: calc(45vw/1.2)
     max-width: 72rem
+    height: calc(45vw/1.2)
     max-height: 60rem
     padding: 0
 
@@ -230,13 +248,15 @@
     &.row
       .portfolio
         &__item
-          animation: itemRev .8s forwards reverse
-
           &:nth-child(odd)
+            animation: itemOddRev .8s forwards reverse
+
             .portfolio__item--image
               animation: imageOddRev 1.2s forwards reverse
 
           &:nth-child(even)
+            animation: itemEvenRev .8s forwards reverse
+
             .portfolio__item--image
               animation: imageEvenRev 1.2s forwards reverse
 
@@ -252,7 +272,7 @@
       .portfolio
         &__item
           &:nth-child(odd)
-            animation: item .8s .4s forwards
+            animation: itemOdd .8s .4s forwards
 
             .portfolio__item--image
               animation: imageOdd 1.2s forwards
