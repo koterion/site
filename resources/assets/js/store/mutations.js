@@ -16,6 +16,9 @@ export default {
       state.tab = 'col'
     }
   },
+  changeAnimation (state) {
+    state.animation = !state.animation
+  },
   updatePortfolio (state, data) {
     state.portfolio.all = data
   },

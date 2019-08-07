@@ -10,6 +10,9 @@ export default {
   toggleTab ({ commit }) {
     commit('changeTab')
   },
+  turnAnimation ({ commit }) {
+    commit('changeAnimation')
+  },
   async fetchPortfolio ({ commit }, page = 1) {
     try {
       const response = await Portfolio.index(Portfolio.getUrl(), page)

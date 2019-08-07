@@ -15,7 +15,3 @@
     name: 'btn'
   }
 </script>
-
-<style scoped>
-
-</style>

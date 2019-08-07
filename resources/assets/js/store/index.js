@@ -11,6 +11,7 @@ export default new Vuex.Store({
     loading: true,
     menu: false,
     tab: '',
+    animation: false,
     portfolio: {
       all: {
         years: {},

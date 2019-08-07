@@ -8,7 +8,7 @@
         <span class="dop">portfolio</span>
       </button>
     </nav>
-    <div :class="'portfolio__list ' + $store.state.tab">
+    <div :class="['portfolio__list',$store.state.tab, {active: $store.state.animation}]">
       <div class="portfolio__item" v-for="item in portfolio.group[currentYear]">
         <div class="portfolio__item--block">
           <h3 class="portfolio__item--title">{{item.title}}</h3>
@@ -60,14 +60,6 @@
       changeYear(year) {
         this.$store.dispatch('clickYearTab', year)
       }
-    },
-    beforeRouteLeave (to, from, next) {
-      this.$store.state.tab = ''
-      next()
     }
   }
 </script>
-
-<style scoped>
-
-</style>

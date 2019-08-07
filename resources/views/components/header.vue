@@ -70,12 +70,12 @@
         this.$store.dispatch('toggleMenu')
       },
       toggleTab: function () {
+        this.$store.dispatch('turnAnimation')
         this.$store.dispatch('toggleTab')
+        setTimeout(()=>{
+          this.$store.dispatch('turnAnimation')
+        },1200)
       }
     }
   }
 </script>
-
-<style scoped>
-
-</style>

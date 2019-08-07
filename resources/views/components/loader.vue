@@ -13,7 +13,3 @@
     components: {Logo}
   }
 </script>
-
-<style scoped>
-
-</style>

@@ -1,71 +1,11 @@
 @import "~@glidejs/glide/src/assets/sass/glide.core"
 
-@keyframes itemOdd
-  0%
-    width: 100%
-    max-height: 100%
-    height: 52.5rem
-
-  50%
-    width: 100%
-    height: calc(45vw/1.2)
-    max-height: 60rem
-    max-width: 100%
-
-  99%
-    max-width: 100rem
-
-  100%
-    width: 45vw
-    height: calc(45vw/1.2)
-    max-width: 72rem
-    max-height: 60rem
-
-@keyframes itemOddRev
-  0%
-    width: 100%
-
-  50%
-    width: 100%
-    height: calc(45vw/1.2)
-    max-height: 60rem
-    max-width: 100%
-
-  99%
-    max-width: 100rem
-
-  100%
-    width: 45vw
-    height: calc(45vw/1.2)
-    max-width: 72rem
-    max-height: 60rem
-
 @keyframes itemEven
-  0%
-    width: 100%
-    max-height: 100%
-    height: 52.5rem
-
   25%
     margin-top: 0
 
-  50%
-    width: 100%
-    height: calc(45vw/1.2)
-    max-height: 60rem
-    max-width: 100%
-
-  98.9%
-    margin-top: -76rem
-
-  99%
-    margin-top: 0
-
   100%
-    width: 45vw
-    height: calc(45vw/1.2)
-    max-width: 72rem
-    max-height: 60rem
+    margin-top: -68.5rem
 
 @keyframes itemEvenRev
   0%
@@ -74,28 +14,12 @@
   25%
     margin-top: 0
 
-  50%
-    width: 100%
-    height: calc(45vw/1.2)
-    max-height: 60rem
-    max-width: 100%
-
-  98.9%
-    margin-top: -76rem
-
-  99%
-    margin-top: 0
-
   100%
-    width: 45vw
     height: calc(45vw/1.2)
-    max-width: 72rem
-    max-height: 60rem
+    margin-top: -68.5rem
 
 @keyframes imageOdd
   0%
-    position: relative
-  1%
     left: 100%
     transform: translateX(-100%)
     position: absolute
@@ -232,6 +156,7 @@
     display: flex
     flex-direction: column
     justify-content: center
+
 .portfolio
   display: flex
   flex-wrap: wrap
@@ -246,11 +171,9 @@
 
     @media (min-width: $laptop + 1px)
       &.row
-        .portfolio
-          &__item
+        &.active
+          .portfolio__item
             &:nth-child(odd)
-              animation: itemOddRev .8s forwards reverse
-
               .portfolio__item--image
                 animation: imageOddRev 1.2s forwards reverse
 
@@ -260,51 +183,92 @@
               .portfolio__item--image
                 animation: imageEvenRev 1.2s forwards reverse
 
+            &--block
+              animation: blockRev .4s .8s forwards
+
+        .portfolio
+          &__item
             &--image
               .icons
                 transition: all .2s .6s
 
             &--block
-              animation: blockRev .4s .8s forwards
               transition: opacity .4s .4s
 
       &.col
-        .portfolio
-          &__item
+        &.active
+          .portfolio__item
             &:nth-child(odd)
-              animation: itemOdd .8s .4s forwards
-
               .portfolio__item--image
-                animation: imageOdd 1.2s forwards
+                animation: imageOdd 1.2s
 
             &:nth-child(even)
-              animation: itemEven .8s .4s forwards
+              animation: itemEven .8s .4s
 
               .portfolio__item--image
-                animation: imageEven 1.2s forwards
-
-            &--image
-              .icons
-                opacity: 0
-                left: -1.2rem
-                top: -1.2rem
-                transition: all .2s .4s
-
-              .image
-                background: #1C1C1C
-
-              img
-                opacity: 1
+                animation: imageEven 1.2s
 
             &--block
-              animation: block .4s .8s forwards
-              transition: opacity .4s
+              animation: block .4s .8s
+
+        &:not(.active)
+          .portfolio__item
+            width: 45vw
+            height: calc(45vw/1.2)
+            max-width: 72rem
+
+            .portfolio__item--image
+              position: absolute
+              width: 45vw
+              height: calc(45vw/1.2)
+              max-width: 72rem
+              max-height: 60rem
+              padding: 0
+
+            &:nth-child(odd)
+              .portfolio__item--image
+                left: 0
+                transform: translateX(0)
+
+            &:nth-child(even)
+              margin-top: 0
+
+              .portfolio__item--image
+                left: 100%
+                transform: translateX(-100%)
+
+            &--block
+              width: 100%
+              height: calc(45vw/1.2)
+              max-height: 60rem
+              z-index: 2
+              padding: 0 9.35%
+              display: flex
+              justify-content: center
+              flex-direction: column
+
+        & .portfolio__item
+          &--image
+            .icons
               opacity: 0
+              left: -1.2rem
+              top: -1.2rem
+              transition: all .2s .4s
+
+            .image
+              background: #1C1C1C
+
+            img
+              opacity: 1
+
+          &--block
+            transition: opacity .4s
+            opacity: 0
 
             &:hover
               .portfolio
                 &__item
-                  &--block
+                  &--blockRev
                     opacity: 1
 
                   &--image
@@ -318,6 +282,7 @@
     justify-content: space-between
     position: relative
     height: 52.5rem
+    max-height: 60rem
 
     &:nth-child(even)
       flex-direction: row-reverse
