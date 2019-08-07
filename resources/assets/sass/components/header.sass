@@ -236,3 +236,27 @@
 
       &:after
         right: 0
+
+  @media (max-width: 1900px)
+    &__burger,&__back
+      left: 3rem
+
+    &__tab
+      right: 3rem
+
+  @media (max-width: $laptop)
+    padding: 3.5rem
+
+    &__burger,&__back
+      top: 3rem
+
+    &__tab
+      display: none
+
+  @media (max-width: $padmini)
+    &__burger, &__back
+      width: 30px
+      height: 30px
+      background: #1C1C1C
+      box-shadow: 0 0 0 6px #1C1C1C
+      border-radius: 50%

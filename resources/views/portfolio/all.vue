@@ -1,5 +1,5 @@
 <template>
-  <div class="portfolio box">
+  <div class="portfolio box-sm">
     <nav class="portfolio__time">
       <button v-for="year in portfolio.years"
               :class="['portfolio__time--item', { active: currentYear === year }]" @click="changeYear(year)">
@@ -14,9 +14,8 @@
           <h3 class="portfolio__item--title">{{item.title}}</h3>
           <p class="portfolio__item--text">{{item.description}}</p>
           <div class="portfolio__item--footer">
-            <a class="portfolio__item--btn" :href="item.site" target="_blank">Site</a>
-            <router-link :to="{name: 'portfolio.one', params: {id: item.id}}" class="portfolio__item--btn">More
-            </router-link>
+            <btn class="portfolio__item--btn" :link="item.site" :text="'Site'"/>
+            <btn class="portfolio__item--btn" :link="{name: 'portfolio.one', params: {id: item.id}}" :text="'More'" :route="true"/>
           </div>
         </div>
         <div class="portfolio__item--image">
@@ -36,6 +35,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import Btn from '../components/btn'
 
   export default {
     data: function () {
@@ -47,6 +47,9 @@
         }
       }
     },
+    components: {
+      Btn
+    },
     computed: {
       ...mapGetters({
         portfolio: 'getPortfolio',
@@ -57,6 +60,10 @@
       changeYear(year) {
         this.$store.dispatch('clickYearTab', year)
       }
+    },
+    beforeRouteLeave (to, from, next) {
+      this.$store.state.tab = ''
+      next()
     }
   }
 </script>

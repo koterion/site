@@ -28,6 +28,7 @@ html
 body
   background-color: $bgColor
   font-size: 14px
+  line-height: 1.2
   font-family: $font
 
   h1,
@@ -53,9 +54,26 @@ body
   padding: 0 3rem
 
   &-sm
-    max-width: 160rem
+    max-width: calc(160rem + 2*(40px + 6rem))
     margin: 0 auto
-    padding: 0 3rem
+    padding: 0 calc(40px + 6rem)
+
+    @media (max-width: $laptop)
+      padding-right: 3rem
+
+    @media (max-width: $padmini)
+      padding-left: 3rem
+
+  &-page
+    max-width: calc(127.2rem + 2*(40px + 6rem))
+    margin: 0 auto
+    padding: 0 calc(40px + 6rem)
+
+    @media (max-width: $laptop)
+      padding-right: 3rem
+
+    @media (max-width: $padmini)
+      padding-left: 3rem
 
 .btn
   +mx-btn()

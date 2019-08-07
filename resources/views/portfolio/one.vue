@@ -1,5 +1,5 @@
 <template>
-  <div class="portfolio__one box-sm">
+  <div class="portfolio__one box-page">
     <div class="carousel">
       <div class="icons">
         <div class="square"></div>
@@ -17,7 +17,7 @@
         <div class="glide__bullets" data-glide-el="controls[nav]">
           <button v-for="(image, index) in portfolio.images" class="glide__bullet" :data-glide-dir="'='+index"></button>
         </div>
-        <a class="portfolio__one--btn" :href="portfolio.current.site" target="_blank">Visit the website</a>
+        <btn :link="portfolio.current.site" :text="'Visit the website'" class="portfolio__one--btn"/>
       </div>
     </div>
     <div class="gui">
@@ -26,9 +26,9 @@
       <div class="clear"></div>
     </div>
     <div class="portfolio__one--footer">
-      <btn v-if="portfolio.prev" :link="{name: 'portfolio.one', params: {id: portfolio.prev}}" :text="'previous project'"/>
+      <btn v-if="portfolio.prev" :link="{name: 'portfolio.one', params: {id: portfolio.prev}}" :text="'previous project'" :route="true"/>
       <div v-else class="disabled btn">previous project</div>
-      <btn v-if="portfolio.next" :link="{name: 'portfolio.one', params: {id: portfolio.next}}" :text="'next project'"/>
+      <btn v-if="portfolio.next" :link="{name: 'portfolio.one', params: {id: portfolio.next}}" :text="'next project'" :route="true"/>
       <div v-else class="disabled btn">next project</div>
     </div>
   </div>
