@@ -1,147 +1,22 @@
 @import "~@glidejs/glide/src/assets/sass/glide.core"
+$blockW: calc((96vw - 2*(40px + 6rem))/2)
 
-@keyframes itemEven
-  25%
-    margin-top: 0
-
-  100%
-    margin-top: -68.5rem
-
-@keyframes itemEvenRev
+@keyframes itemOdd
   0%
-    width: 100%
-
-  25%
-    margin-top: 0
+    height: 52.5rem
 
   100%
     height: calc(45vw/1.2)
-    margin-top: -68.5rem
 
-@keyframes imageOdd
+@keyframes itemOddRow
   0%
-    left: 100%
-    transform: translateX(-100%)
-    position: absolute
-    max-width: 100%
-    max-height: 100%
-  33%
-    position: absolute
-    left: 0
-    transform: translateX(0)
-    padding: 3.6rem
-    height: 48rem
-    max-height: 60rem
-    max-width: 72rem
-    width: 55%
-  66%
-    position: absolute
     height: calc(45vw/1.2)
-    max-height: 60rem
-    padding: 0
-    width: 45vw
-  100%
-    position: absolute
-    left: 0
-    transform: translateX(0)
-    width: 45vw
-    height: calc(45vw/1.2)
-    max-width: 72rem
-    max-height: 60rem
-    padding: 0
 
-@keyframes imageOddRev
-  0%
-    position: relative
-  1%
-    left: 100%
-    transform: translateX(-100%)
-    position: absolute
-    max-width: 100%
-    width: 55%
-  33%
-    left: 0
-    transform: translateX(0)
-    padding: 3.6rem
-    width: 45vw
-    max-width: 72rem
-  66%
-    padding: 0
-    height: 48rem
-    max-height: 100%
-  100%
-    position: absolute
-    left: 0
-    transform: translateX(0)
-    width: 45vw
-    max-width: 72rem
+  50%
     height: calc(45vw/1.2)
-    max-height: 60rem
-    padding: 0
 
-@keyframes imageEven
-  0%
-    position: relative
-  1%
-    left: 0
-    transform: translateX(0)
-    position: absolute
-    max-width: 100%
-  33%
-    position: absolute
-    left: 100%
-    transform: translateX(-100%)
-    padding: 3.6rem
-    height: 48rem
-    max-height: 100%
-    max-width: 72rem
-    width: 55%
-  66%
-    position: absolute
-    left: 100%
-    transform: translateX(-100%)
-    height: calc(45vw/1.2)
-    max-height: 60rem
-    padding: 0
-    width: 45vw
-  100%
-    position: absolute
-    left: 100%
-    transform: translateX(-100%)
-    width: 45vw
-    height: calc(45vw/1.2)
-    max-width: 72rem
-    max-height: 60rem
-    padding: 0
-
-@keyframes imageEvenRev
-  0%
-    position: relative
-  1%
-    left: 0
-    transform: translateX(0)
-    position: absolute
-    max-width: 100%
-    width: 55%
-  33%
-    left: 100%
-    transform: translateX(-100%)
-    padding: 3.6rem
-    width: 45vw
-    max-width: 72rem
-  66%
-    padding: 0
-    height: 48rem
-    max-height: 100%
-  100%
-    position: absolute
-    left: 100%
-    transform: translateX(-100%)
-    width: 45vw
-    max-width: 72rem
-    height: calc(45vw/1.2)
-    max-height: 60rem
-    padding: 0
+  75%
+    height: 52.5rem
 
 @keyframes block
   0%
@@ -156,6 +31,313 @@
     display: flex
     flex-direction: column
     justify-content: center
+
+@media (min-width: 1701px)
+  @keyframes imageOdd
+    0%
+      left: 100%
+      transform: translateX(-100%)
+      position: absolute
+      max-width: 100%
+      max-height: 100%
+    33%
+      position: absolute
+      left: 0
+      transform: translateX(0)
+      padding: 3.6rem
+      height: 48rem
+      max-height: 60rem
+      max-width: 72rem
+      width: 55%
+    66%
+      position: absolute
+      height: calc(45vw/1.2)
+      max-height: 60rem
+      padding: 0
+      width: 45vw
+    100%
+      position: absolute
+      left: 0
+      transform: translateX(0)
+      width: 45vw
+      height: calc(45vw/1.2)
+      max-width: 72rem
+      max-height: 60rem
+      padding: 0
+
+  @keyframes imageEven
+    0%
+      position: relative
+    1%
+      left: 0
+      transform: translateX(0)
+      position: absolute
+      max-width: 100%
+    33%
+      position: absolute
+      left: 100%
+      transform: translateX(-100%)
+      padding: 3.6rem
+      height: 48rem
+      max-height: 100%
+      max-width: 72rem
+      width: 55%
+    66%
+      position: absolute
+      left: 100%
+      transform: translateX(-100%)
+      height: calc(45vw/1.2)
+      max-height: 60rem
+      padding: 0
+      width: 45vw
+    100%
+      position: absolute
+      left: 100%
+      transform: translateX(-100%)
+      width: 45vw
+      height: calc(45vw/1.2)
+      max-width: 72rem
+      max-height: 60rem
+      padding: 0
+
+  @keyframes imageOddRev
+    0%
+      position: relative
+    1%
+      left: 100%
+      transform: translateX(-100%)
+      position: absolute
+      max-width: 100%
+      width: 55%
+    33%
+      left: 0
+      transform: translateX(0)
+      padding: 3.6rem
+      width: 45vw
+      max-width: 72rem
+    66%
+      padding: 0
+      height: 48rem
+      max-height: 100%
+    100%
+      position: absolute
+      left: 0
+      transform: translateX(0)
+      width: 45vw
+      max-width: 72rem
+      height: calc(45vw/1.2)
+      max-height: 60rem
+      padding: 0
+
+  @keyframes imageEvenRev
+    0%
+      position: relative
+    1%
+      left: 0
+      transform: translateX(0)
+      position: absolute
+      max-width: 100%
+      width: 55%
+    33%
+      left: 100%
+      transform: translateX(-100%)
+      padding: 3.6rem
+      width: 45vw
+      max-width: 72rem
+    66%
+      padding: 0
+      height: 48rem
+      max-height: 100%
+    100%
+      position: absolute
+      left: 100%
+      transform: translateX(-100%)
+      width: 45vw
+      max-width: 72rem
+      height: calc(45vw/1.2)
+      max-height: 60rem
+      padding: 0
+
+  @keyframes itemEven
+    25%
+      margin-top: 0
+
+    100%
+      margin-top: -76rem
+
+  @keyframes itemEvenRev
+    0%
+      width: 100%
+      height: 52.5rem
+
+    25%
+      margin-top: 0
+      height: 52.5rem
+
+    100%
+      height: calc(45vw/1.2)
+      margin-top: -76rem
+
+@media (max-width: 1700px)
+  @keyframes imageOdd
+    0%
+      left: 100%
+      transform: translateX(-100%)
+      position: absolute
+    33%
+      position: absolute
+      left: 0
+      transform: translateX(0)
+      padding: 3.6rem
+      height: 48rem
+      max-height: 100%
+      width: 55%
+    66%
+      position: absolute
+      height: calc(45vw/1.2)
+      max-height: 60rem
+      padding: 0
+      width: $blockW
+    100%
+      position: absolute
+      left: 0
+      transform: translateX(0)
+      width: $blockW
+      height: calc(45vw/1.2)
+      max-height: 60rem
+      padding: 0
+
+  @keyframes imageEven
+    0%
+      left: 0
+      transform: translateX(0)
+      position: absolute
+
+    33%
+      position: absolute
+      left: 100%
+      transform: translateX(-100%)
+      padding: 3.6rem
+      height: 48rem
+      max-height: 100%
+      width: 55%
+    66%
+      position: absolute
+      left: 100%
+      transform: translateX(-100%)
+      height: calc(45vw/1.2)
+      max-height: 60rem
+      padding: 0
+      width: $blockW
+    100%
+      position: absolute
+      left: 100%
+      transform: translateX(-100%)
+      width: $blockW
+      height: calc(45vw/1.2)
+      max-height: 60rem
+      padding: 0
+
+  @keyframes imageOddRev
+    0%
+      left: 100%
+      transform: translateX(-100%)
+      position: absolute
+      width: 55%
+    33%
+      left: 0
+      transform: translateX(0)
+      padding: 3.6rem
+      width: $blockW
+    66%
+      padding: 0
+      height: 48rem
+      max-height: 100%
+    100%
+      position: absolute
+      left: 0
+      transform: translateX(0)
+      width: $blockW
+      height: calc(45vw/1.2)
+      max-height: 60rem
+      padding: 0
+
+  @keyframes imageEvenRev
+    0%
+      left: 0
+      transform: translateX(0)
+      position: absolute
+      width: 55%
+    33%
+      left: 100%
+      transform: translateX(-100%)
+      padding: 3.6rem
+      width: $blockW
+    66%
+      padding: 0
+      height: 48rem
+      max-height: 100%
+    100%
+      position: absolute
+      left: 100%
+      transform: translateX(-100%)
+      width: $blockW
+      height: calc(45vw/1.2)
+      max-height: 60rem
+      padding: 0
+
+  @keyframes itemEven
+    0%
+      height: 52.5rem
+
+    25%
+      margin-top: 0
+
+    100%
+      height: calc(45vw/1.2)
+      margin-top: -66rem
+
+  @keyframes itemEvenRev
+    0%
+      width: 100%
+
+    25%
+      margin-top: 0
+      height: 52.5rem
+
+    50%
+      height: calc(45vw/1.2)
+
+    100%
+      height: calc(45vw/1.2)
+      margin-top: -66rem
+
+@media (max-width: 1600px)
+  @keyframes itemEven
+    0%
+      height: 52.5rem
+
+    25%
+      margin-top: 0
+
+    100%
+      height: calc(45vw/1.2)
+      margin-top: calc(-45vw/1.2 - 6rem)
+
+  @keyframes itemEvenRev
+    0%
+      width: 100%
+
+    25%
+      margin-top: 0
+
+    50%
+      height: 52.5rem
+
+    100%
+      height: calc(45vw/1.2)
+      margin-top: calc(-45vw/1.2 - 6rem)
+
 
 .portfolio
   display: flex
@@ -174,14 +356,16 @@
         &.active
           .portfolio__item
             &:nth-child(odd)
+              animation: itemOddRow 1.2s
+
               .portfolio__item--image
-                animation: imageOddRev 1.2s forwards reverse
+                animation: imageOddRev 1.2s reverse
 
             &:nth-child(even)
-              animation: itemEvenRev .8s forwards reverse
+              animation: itemEvenRev .8s reverse
 
               .portfolio__item--image
-                animation: imageEvenRev 1.2s forwards reverse
+                animation: imageEvenRev 1.2s reverse
 
             &--block
               animation: blockRev .4s .8s forwards
@@ -199,6 +383,8 @@
         &.active
           .portfolio__item
             &:nth-child(odd)
+              animation: itemOdd .8s .4s
+
               .portfolio__item--image
                 animation: imageOdd 1.2s
 
@@ -217,11 +403,20 @@
             height: calc(45vw/1.2)
             max-width: 72rem
 
+            &:hover
+              .portfolio
+                &__item
+                  &--block
+                    opacity: 1
+
+                  &--image
+                    img
+                      opacity: .05
+
             .portfolio__item--image
               position: absolute
-              width: 45vw
+              width: 100%
               height: calc(45vw/1.2)
-              max-width: 72rem
               max-height: 60rem
               padding: 0
 
@@ -247,6 +442,9 @@
               justify-content: center
               flex-direction: column
 
+            @media (max-width: 1700px)
+              width: $blockW
+
         & .portfolio__item
           &--image
             .icons
@@ -265,16 +463,6 @@
             transition: opacity .4s
             opacity: 0
 
-            &:hover
-              .portfolio
-                &__item
-                  &--blockRev
-                    opacity: 1
-
-                  &--image
-                    img
-                      opacity: .05
-
   &__item
     width: 100%
     display: flex
@@ -290,6 +478,9 @@
 
     &:not(:last-child)
       margin-bottom: 16rem
+
+      @media (max-width: 1700px)
+        margin-bottom: 6rem
 
     &--image
       background: #1C1C1C
