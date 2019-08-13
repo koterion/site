@@ -1,0 +1,49 @@
+.home
+	display: flex
+	min-height: calc(100vh - 14rem)
+	align-items: center
+
+	&__text
+		color: grey
+		width: 58.5rem
+
+	&__h1
+		font-size: 4.2rem
+		color: #ccc
+		letter-spacing: 2px
+
+	&__p
+		color: #bbb
+		font-size: 2.4rem
+		line-height: 1.4
+		margin-top: 2rem
+
+	&__switcher
+		width: 7rem
+		margin: 4.5rem 0 0 0
+
+		&--img
+			max-width: 100%
+
+.lighter
+	position: absolute
+	top: 0
+	left: 45%
+
+	&__cat
+		position: absolute
+		top: 50%
+		left: 30%
+
+		img
+			width: 100px
+
+	&__on,&__off
+		margin: 0
+		display: none
+
+		&.active
+			display: block
+
+	&__img
+		height: 100vh

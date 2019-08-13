@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" v-if="$route.name !== 'home'">
     <h3 class="footer__title">Get in touch</h3>
     <p class="footer__text">Feel free to contact me via email at <a class="footer__email" href="mailto:hello@koterion.com">hello@koterion.com</a></p>
     <nav class="footer__social">

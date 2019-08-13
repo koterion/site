@@ -8,7 +8,7 @@
 </head>
 <body class="home">
 <main id="app">
-    <vue-loader></vue-loader>
+    <!-- <vue-loader></vue-loader> -->
     <vue-header></vue-header>
     <router-view></router-view>
     <vue-footer></vue-footer>
