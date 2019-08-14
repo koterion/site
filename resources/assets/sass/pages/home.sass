@@ -25,25 +25,42 @@
 		&--img
 			max-width: 100%
 
-.lighter
-	position: absolute
-	top: 0
-	left: 45%
+	.vue-typer
+		.custom
+			&.char
+				color: #ccc
 
-	&__cat
+			&.caret
+				background-color: #ccc
+
+	.lighter
 		position: absolute
-		top: 50%
-		left: 30%
+		top: 0
+		left: 45%
 
-		img
-			width: 100px
+		&__cat
+			position: absolute
+			top: 50%
+			left: 30%
 
-	&__on,&__off
-		margin: 0
-		display: none
+			img
+				width: 100px
 
-		&.active
-			display: block
+			&--eye
+				position: absolute
+				width: 5px
+				height: 5px
+				background: orangered
+				top: 0
+				left: 0
+				z-index: 1
 
-	&__img
-		height: 100vh
+		&__on,&__off
+			margin: 0
+			display: none
+
+			&.active
+				display: block
+
+		&__img
+			height: 100vh
