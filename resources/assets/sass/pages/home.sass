@@ -48,17 +48,6 @@
 				position: relative
 				z-index: 2
 
-			&--eye
-				position: absolute
-				width: 6px
-				height: 6px
-				background: white
-				transform: translate(-50%,-50%)
-				border-radius: 50%
-				top: 54px
-				left: 29px
-				z-index: 1
-
 		&__on,&__off
 			margin: 0
 			display: none
@@ -68,3 +57,25 @@
 
 		&__img
 			height: 100vh
+
+	.eye
+		&__left
+			.eye
+				&__pupil
+					top: 54px
+					left: 29px
+
+		&__right
+			.eye
+				&__pupil
+					top: 54px
+					left: 70px
+
+		&__pupil
+			position: absolute
+			width: 6px
+			height: 6px
+			background: white
+			transform: translate(-50%,-50%)
+			border-radius: 50%
+			z-index: 3
