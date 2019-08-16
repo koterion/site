@@ -1,81 +1,94 @@
 .home
-	display: flex
-	min-height: calc(100vh - 14rem)
-	align-items: center
+  display: flex
+  min-height: calc(100vh - 14rem)
+  align-items: center
 
-	&__text
-		color: grey
-		width: 58.5rem
+  &__text
+    color: grey
+    width: 58.5rem
 
-	&__h1
-		font-size: 4.2rem
-		color: #ccc
-		letter-spacing: 2px
+  &__h1
+    font-size: 4.2rem
+    color: #ccc
+    letter-spacing: 2px
 
-	&__p
-		color: #bbb
-		font-size: 2.4rem
-		line-height: 1.4
-		margin-top: 2rem
+  &__p
+    color: #bbb
+    font-size: 2.4rem
+    line-height: 1.4
+    margin-top: 2rem
 
-	&__switcher
-		width: 7rem
-		margin: 4.5rem 0 0 0
+  &__switcher
+    width: 7rem
+    margin: 4.5rem 0 0 0
 
-		&--img
-			max-width: 100%
+    &--img
+      max-width: 100%
 
-	.vue-typer
-		.custom
-			&.char
-				color: #ccc
+  .vue-typer
+    .custom
+      &.char
+        color: #ccc
 
-			&.caret
-				background-color: #ccc
+      &.caret
+        background-color: #ccc
 
-	.lighter
-		position: absolute
-		top: 0
-		left: 45%
+  .lighter
+    position: absolute
+    top: 0
+    left: 45%
 
-		&__cat
-			position: absolute
-			top: 50%
-			left: 30%
+    &__cat
+      position: absolute
+      top: 50%
+      left: 30%
 
-			img
-				width: 100px
-				position: relative
-				z-index: 2
+      img
+        width: 100px
+        position: relative
+        z-index: 2
 
-		&__on,&__off
-			margin: 0
-			display: none
+    &__on, &__off
+      margin: 0
+      display: none
 
-			&.active
-				display: block
+      &.active
+        display: block
 
-		&__img
-			height: 100vh
+    &__img
+      height: 100vh
 
-	.eye
-		&__left
-			.eye
-				&__pupil
-					top: 54px
-					left: 29px
+  .eye
+    &__left
+      & .eye
+        &__pupil
+          top: 54px
+          left: 29px
 
-		&__right
-			.eye
-				&__pupil
-					top: 54px
-					left: 70px
+    &__right
+      & .eye
+        &__pupil
+          top: 54px
+          left: 70px
 
-		&__pupil
-			position: absolute
-			width: 6px
-			height: 6px
-			background: white
-			transform: translate(-50%,-50%)
-			border-radius: 50%
-			z-index: 3
+    &__pupil
+      position: absolute
+      width: 5px
+      height: 5px
+      background: white
+      transform: translate(-50%, -50%)
+      border-radius: 50%
+      z-index: 1
+      transition: all .2s
+      box-shadow: 0 0 3px 2px #ffffff
+
+    &__light
+      position: absolute
+      width: 0
+      height: 0
+      background: white
+      transform: translate(-50%, -50%)
+      border-radius: 50%
+      z-index: 3
+      transition: all .2s
+      box-shadow: 0 0 20px 5px #ffffff

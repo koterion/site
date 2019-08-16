@@ -63,6 +63,8 @@
         const cat = document.querySelector('.lighter__cat')
         const eyeLeft = cat.querySelector('.eye__left .eye__pupil')
         const eyeRight = cat.querySelector('.eye__right .eye__pupil')
+        const eyeRightLight = cat.querySelector('.eye__right .eye__light')
+        const eyeLeftLight = cat.querySelector('.eye__left .eye__light')
         const catParams = {
           height: cat.offsetHeight,
           width: cat.offsetWidth,
@@ -73,41 +75,62 @@
             width: 20,
             height: 10,
             left: 29,
-            right: 70,
+            right: 70
           }
         }
         const position = {
           x: event.x,
-          y: event.y,
+          y: event.y
         }
         const current = {
           hor: position.x - catParams.left - catParams.eyes.left,
-          vert: catParams.top + catParams.eyes.top - position.y,
+          vert: catParams.top + catParams.eyes.top - position.y
         }
 
         const coef = {
           y: (catParams.top + catParams.eyes.top) / (catParams.eyes.height / 2),
           x: {
             left: (catParams.left + catParams.eyes.left) / (catParams.eyes.width / 2),
-            right: (catParams.left + catParams.eyes.right) / (catParams.eyes.width / 2),
-          },
+            right: (catParams.left + catParams.eyes.right) / (catParams.eyes.width / 2)
+          }
         }
 
-        const a = catParams.eyes.width/2
-        const b = catParams.eyes.height/2
-        const xl = current.hor / coef.x.left
-        const xr = current.hor / coef.x.right
+        const a = catParams.eyes.width / 2
+        const b = catParams.eyes.height / 2
+        const xl = Math.abs(current.hor / coef.x.left) < 8.38 ? current.hor / coef.x.left : Math.sign(current.hor / coef.x.left) * 8.38
+        const xr = Math.abs(current.hor / coef.x.right) < 8.38 ? current.hor / coef.x.right : Math.sign(current.hor / coef.x.right) * 8.38
 
         const y = current.vert / coef.y
 
-        const yl = (3.16228*a*b*Math.sqrt(15*a*a + 33*b*b - 22*xl*xl) - 22*xl*b*b)/(10*a*a + 22*b*b)
-        const yr = (xr*b*b - a*b*Math.sqrt(a*a + b*b - xr*xr))/(a*a - b*b)
+        let yl = (-11 * xl * b * b - 2.23607 * a * b * Math.sqrt(5 * a * a + 11 * b * b - 11 * xl * xl)) / (5 * a * a + 11 * b * b)
+        let yr = (11 * xl * b * b - 2.23607 * a * b * Math.sqrt(5 * a * a + 11 * b * b - 11 * xl * xl)) / (5 * a * a + 11 * b * b)
 
-        eyeLeft.style.left = xl + catParams.eyes.left + 'px'
-        eyeLeft.style.top = (yl < y ? yl : -y) + catParams.eyes.top + 'px'
+        if (y >= 0) {
+          yl = (2.23607 * a * b * Math.sqrt(5 * a * a + 11 * b * b - 11 * xl * xl) - 11 * xl * b * b) / (5 * a * a + 11 * b * b)
+          yr = (2.23607 * a * b * Math.sqrt(5 * a * a + 11 * b * b - 11 * xl * xl) + 11 * xl * b * b) / (5 * a * a + 11 * b * b)
+        }
 
-        eyeRight.style.top = -xr + catParams.eyes.top + 'px'
-        eyeRight.style.left = yr + catParams.eyes.right + 'px'
+        let hor = {
+          left: (y > 0 ? (y > yl ? -yl : -y) : (yl > y ? -yl : -y)) + catParams.eyes.top,
+          right: (y > 0 ? (y > yr ? -yr : -y) : (yr > y ? -yr : -y)) + catParams.eyes.top
+        }
+
+        let vert = {
+          left: xl + catParams.eyes.left,
+          right: xr + catParams.eyes.right
+        }
+
+        eyeLeft.style.left = vert.left + 'px'
+        eyeLeft.style.top = hor.left + 'px'
+
+        eyeLeftLight.style.left = vert.left + 'px'
+        eyeLeftLight.style.top = hor.left + 'px'
+
+        eyeRight.style.left = vert.right + 'px'
+        eyeRight.style.top = hor.right + 'px'
+
+        eyeRightLight.style.left = vert.right + 'px'
+        eyeRightLight.style.top = hor.right + 'px'
       },
       destroyEyes: function () {
         document.removeEventListener('mousemove', this.mathEyes)

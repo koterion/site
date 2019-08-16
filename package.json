@@ -6,13 +6,10 @@
     "description": "Koterion site",
     "license": "MIT",
     "private": true,
-    "eslintConfig": {
-        "env": {
+    "standard": {
+        "envs": {
             "browser": true,
-            "node": true,
-            "jasmine": true,
-            "jquery": true,
-            "es6": true
+            "jquery": true
         }
     },
     "browserslist": [
