@@ -15,14 +15,14 @@
                          aspernatur itaque! Eos corporis quidem aspernatur quibusdam expedita at dolorem omnis,
                          voluptatem quos labore dolores, saepe voluptatibus debitis!</p>
       <figure class="home__switcher" @click="!light ? moveEyes() : destroyEyes()">
-        <img class="home__switcher--img" src="/img/cat-paw-stroke.svg" alt="">
+        <img class="home__switcher--img glitch-img" v-for="n in 4" :data-glitch="n" src="/img/cat-paw-stroke.svg" :alt="'cat pow ' + n">
       </figure>
     </div>
     <div class="lighter">
       <figure :class="['lighter__on', {active: light}]">
-        <img class="lighter__img" src="/img/lighter_on.png" alt="">
+        <img class="lighter__img" src="/img/lighter_on.png" alt="Lighter">
         <div class="lighter__cat">
-          <img src="/img/icon.svg" alt="">
+          <img src="/img/icon.svg" alt="Cat head">
           <div class="eye__left">
             <div class="eye__pupil"></div>
             <div class="eye__light"></div>
@@ -32,9 +32,12 @@
             <div class="eye__light"></div>
           </div>
         </div>
+        <router-link class="lighter__arrow" :to="{name: 'portfolio'}">
+          <img class="lighter__arrow--img" src="/img/arrow-portfolio.svg" alt="Portfolio arrow">
+        </router-link>
       </figure>
       <figure :class="['lighter__off', {active: !light}]">
-        <img class="lighter__img" src="/img/lighter_off.png" alt="">
+        <img class="lighter__img" src="/img/lighter_off.png" alt="Lighter">
       </figure>
     </div>
   </div>
@@ -120,22 +123,26 @@
           right: xr + catParams.eyes.right
         }
 
-        eyeLeft.style.left = vert.left + 'px'
-        eyeLeft.style.top = hor.left + 'px'
+        eyeLeft.style.left = vert.left.toFixed() + 'px'
+        eyeLeft.style.top = hor.left.toFixed() + 'px'
 
-        eyeLeftLight.style.left = vert.left + 'px'
-        eyeLeftLight.style.top = hor.left + 'px'
+        eyeLeftLight.style.left = vert.left.toFixed() + 'px'
+        eyeLeftLight.style.top = hor.left.toFixed() + 'px'
 
-        eyeRight.style.left = vert.right + 'px'
-        eyeRight.style.top = hor.right + 'px'
+        eyeRight.style.left = vert.right.toFixed() + 'px'
+        eyeRight.style.top = hor.right.toFixed() + 'px'
 
-        eyeRightLight.style.left = vert.right + 'px'
-        eyeRightLight.style.top = hor.right + 'px'
+        eyeRightLight.style.left = vert.right.toFixed() + 'px'
+        eyeRightLight.style.top = hor.right.toFixed() + 'px'
       },
       destroyEyes: function () {
         document.removeEventListener('mousemove', this.mathEyes)
         this.light = !this.light
       }
+    },
+    beforeRouteLeave (to, from, next) {
+      this.destroyEyes()
+      next()
     }
   }
 </script>

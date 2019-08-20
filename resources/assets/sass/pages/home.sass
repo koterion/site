@@ -21,6 +21,7 @@
   &__switcher
     width: 7rem
     margin: 4.5rem 0 0 0
+    position: relative
 
     &--img
       max-width: 100%
@@ -58,37 +59,45 @@
     &__img
       height: 100vh
 
+    &__arrow
+      width: 17.3rem
+      position: absolute
+      top: 50%
+      opacity: .1
+      right: 0
+      transform: translateY(-50%)
+
+      &--img
+        max-width: 100%
+
   .eye
     &__left
       & .eye
-        &__pupil
+        &__pupil,&__light
           top: 54px
           left: 29px
 
     &__right
       & .eye
-        &__pupil
+        &__pupil,&__light
           top: 54px
           left: 70px
 
-    &__pupil
+    &__pupil,&__light
       position: absolute
-      width: 5px
-      height: 5px
+      transition: left .1s ease, top .1s ease
       background: white
       transform: translate(-50%, -50%)
       border-radius: 50%
+
+    &__pupil
+      width: 5px
+      height: 5px
       z-index: 1
-      transition: all .2s
       box-shadow: 0 0 3px 2px #ffffff
 
     &__light
-      position: absolute
       width: 0
       height: 0
-      background: white
-      transform: translate(-50%, -50%)
-      border-radius: 50%
       z-index: 3
-      transition: all .2s
       box-shadow: 0 0 20px 5px #ffffff
