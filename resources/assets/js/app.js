@@ -53,15 +53,13 @@ const app = new Vue({
     const classList = document.body.classList
     await store.dispatch('fetchPortfolio')
 
+    classList.add('start')
     setTimeout(function () {
-      classList.add('start')
+      classList.add('ready')
       setTimeout(function () {
-        classList.add('ready')
-        setTimeout(function () {
-          classList.remove('start')
-          store.dispatch('fetchLoading', false)
-        }, 600)
-      }, 500)
-    })
+        classList.remove('start')
+        store.dispatch('fetchLoading', false)
+      }, 600)
+    }, 500)
   }
 }).$mount('#app')

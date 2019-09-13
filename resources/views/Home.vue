@@ -114,8 +114,8 @@
         }
 
         let hor = {
-          left: (y > 0 ? (y > yl ? -yl : -y) : (yl > y ? -yl : -y)) + catParams.eyes.top,
-          right: (y > 0 ? (y > yr ? -yr : -y) : (yr > y ? -yr : -y)) + catParams.eyes.top
+          left: (y > 0 ? (y > yl ? -yl : -y) : (yl > y ? -yl < 0 ? 0 : -yl : -y)) + catParams.eyes.top,
+          right: (y > 0 ? (y > yr ? yr < 0 ? 0 : -yr : -y) : (yr > y ? -yr : -y)) + catParams.eyes.top
         }
 
         let vert = {
