@@ -1,13 +1,13 @@
 <template>
   <div class="home box-sm">
     <div class="home__text">
-      <h1 class="home__h1">Some title
+      <h1 class="home__h1">I am
         <vue-typer
-          :text='["Arya","Jon Snow","Daenerys","Melisandre","Tyrion"]'
-          :pre-type-delay='100'
-          :type-delay='200'
+          :text='["Team Lead","","Front-End","Koterion", "Ihor"]'
+          :pre-type-delay='40'
+          :type-delay='80'
           :pre-erase-delay='2000'
-          :erase-delay='80'
+          :erase-delay='50'
           erase-style='backspace'
         ></vue-typer>
       </h1>
