@@ -42,11 +42,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   store.dispatch('toggleMenu', false)
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
 
   next()
 })
 
-const app = new Vue({
+new Vue({
   router,
   store,
   async mounted () {

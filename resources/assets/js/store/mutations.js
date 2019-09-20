@@ -8,6 +8,12 @@ export default {
     } else {
       state.menu = !state.menu
     }
+
+    if (state.menu) {
+      document.body.classList.add('menu-open')
+    } else {
+      document.body.classList.remove('menu-open')
+    }
   },
   changeTab (state) {
     if (state.tab === 'col') {

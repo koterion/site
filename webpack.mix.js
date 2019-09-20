@@ -21,7 +21,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
   })
   .version()
   .browserSync(process.env.APP_URL)
-  
+
 if (mix.inProduction()) {
   mix.copy('resources/assets/img/*.*', 'public/img')
 }

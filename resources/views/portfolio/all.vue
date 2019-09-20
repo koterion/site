@@ -5,7 +5,7 @@
               :class="['portfolio__time--item', { active: currentYear === year }]" @click="changeYear(year)">
         <span v-if="year !== portfolio.years[portfolio.years.length - 1]">{{year}}</span>
         <span v-else>Now</span>
-        <span class="dop">portfolio</span>
+        <span v-if="$store.state.display.current > $store.state.display.mobile" class="dop">portfolio</span>
       </button>
     </nav>
     <div :class="['portfolio__list',$store.state.tab, {active: $store.state.animation}]">

@@ -1,6 +1,6 @@
 <template>
-  <header :class="'header' + (this.$store.state.menu ? ' active' : '')">
-    <div v-if="$route.name.search('.one') === -1" :class="'header__burger' + (this.$store.state.menu ? ' active' : '')" @click="toggleMenu">
+  <header :class="['header',  {active: $store.state.menu} ]">
+    <div v-if="$route.name.search('.one') === -1" :class="['header__burger',  {active: $store.state.menu} ]" @click="toggleMenu">
       <div class="header__burger--item"></div>
     </div>
     <router-link v-else :to="{name: $route.name.replace('.one','')}" class="header__back">
@@ -52,8 +52,8 @@
         </a>
       </nav>
     </section>
-    <div v-if="$route.name === 'portfolio'"
-         :class="'header__tab ' + (this.$store.state.tab ? this.$store.state.tab : 'row')" @click="toggleTab">
+    <div v-if="$route.name === 'portfolio' && $store.state.display.current > $store.state.display.laptop"
+         :class="['header__tab', $store.state.tab ? $store.state.tab : 'row' ] " @click="toggleTab">
       <div class="header__tab--item"></div>
       <div class="header__tab--item"></div>
     </div>

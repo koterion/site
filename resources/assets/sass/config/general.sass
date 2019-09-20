@@ -4,6 +4,9 @@
 
 html
   font-size: 10px
+  scrollbar-width: thin
+  scrollbar-color: #574A54 $bgColorMenu
+  -ms-overflow-style: -ms-autohiding-scrollbar
 
   @media (max-width: $desktop)
     font-size: 9.5px
@@ -31,6 +34,22 @@ body
   line-height: 1.2
   font-family: $font
 
+  &.menu-open
+    overflow: hidden
+    padding-right: 5px
+
+    .header__tab
+      margin-right: 5px
+
+  &::-webkit-scrollbar-track
+    background-color: $bgColorMenu
+
+  &::-webkit-scrollbar-thumb
+    background-color: #574A54
+
+  &::-webkit-scrollbar
+    width: 5px
+
   h1,
   h2,
   h3,
@@ -40,6 +59,15 @@ body
   p
     font-weight: normal
     margin: 0
+
+  a, button
+    +mx-cursor
+
+  img,a
+    -ms-user-drag: none
+    -moz-user-drag: none
+    -o-user-drag: none
+    -webkit-user-drag: none
 
 #app
   max-width: 100%
@@ -58,13 +86,10 @@ body
   &-sm
     max-width: calc(160rem + 2*(40px + 6rem))
     margin: 0 auto
-    padding: 0 calc(40px + 6rem)
+    padding: 0 3rem
 
-    @media (max-width: $laptop)
-      padding-right: 3rem
-
-    @media (max-width: $padmini)
-      padding-left: 3rem
+    @media (min-width: $laptop +1px)
+      padding: 0 calc(40px + 6rem)
 
   &-page
     max-width: calc(127.2rem + 2*(40px + 6rem))

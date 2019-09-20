@@ -349,9 +349,10 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
     display: flex
     flex-wrap: wrap
     justify-content: space-between
-    margin-top: 9rem
 
-    @media (min-width: $laptop + 1px)
+    @media (min-width: $mobile + 1px)
+      margin-top: 9rem
+
       &.row
         &.active
           .portfolio__item
@@ -469,12 +470,14 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
     align-items: center
     justify-content: space-between
     position: relative
-    height: 52.5rem
-    max-height: 60rem
 
-    &:nth-child(even)
-      flex-direction: row-reverse
-      margin-left: auto
+    @media (min-width: $pad + 1px)
+      height: 52.5rem
+      max-height: 60rem
+
+      &:nth-child(even)
+        flex-direction: row-reverse
+        margin-left: auto
 
     &:not(:last-child)
       margin-bottom: 16rem
@@ -486,10 +489,13 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
       background: #1C1C1C
       padding: 3.6rem
       height: 52.5rem
-      width: 55%
-      left: 0
-      top: 0
       position: relative
+      width: 100%
+
+      @media (min-width: $pad + 1px)
+        width: 55%
+        left: 0
+        top: 0
 
       .image
         overflow: hidden
@@ -506,12 +512,15 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
         transition: opacity .4s
 
     &--block
-      width: 38%
-      opacity: 1
-      overflow: hidden
+      width: 100%
       display: flex
       flex-direction: column
       justify-content: center
+
+      @media (min-width: $pad + 1px)
+        width: 38%
+        opacity: 1
+        overflow: hidden
 
     &--title
       font-size: 4.2rem
@@ -538,6 +547,33 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
     &--btn
       +mx-btn($top: 6rem, $width: 48%)
 
+    @media (max-width: $pad)
+      flex-wrap: wrap
+
+      &--image
+        order: 0
+
+      &--block
+        margin-top: 4rem
+        order: 1
+
+      &--btn
+        min-width: 30rem
+
+    @media (max-width: $pad) and (min-width: $mobile + 1px)
+      &--footer
+        justify-content: space-around
+
+    @media (max-width: $mobile)
+      &--image
+        padding: 25px
+        height: 65vw
+        width: calc(100% + 6rem)
+        margin: 0 -3rem
+
+      &--btn
+        min-width: 45%
+
   &__time
     width: 100%
     display: flex
@@ -557,7 +593,6 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
       transition: color .4s
       padding: 0
       margin: 0
-      cursor: pointer
       position: relative
 
       & .dop
@@ -580,6 +615,18 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
 
         & .dop
           display: block
+
+    @media (max-width: $mobile)
+      flex-wrap: wrap
+      padding: 3rem 0
+      justify-content: space-around
+
+      &--item
+        margin: 5px
+        font-size: 18px
+
+        .dop
+          display: none!important
 
   &__one
     &--footer
@@ -634,6 +681,10 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
   .circle
     border-radius: 50%
 
+  @media (max-width: $mobile)
+    left: 6px
+    top: 6px
+
 .carousel
   padding: 3.6rem
   background: #1C1C1C
@@ -668,7 +719,6 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
       background-color: #595158
       transition: background-color .4s
       outline: none
-      cursor: pointer
 
       &:not(:first-child)
         margin-left: 3.6rem

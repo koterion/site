@@ -3,9 +3,13 @@
   min-height: calc(100vh - 14rem)
   align-items: center
 
+  @media (max-height: 800px)
+    min-height: 66rem
+
   &__text
     color: grey
     width: 58.5rem
+    z-index: 1
 
   &__h1
     font-size: 4.2rem
@@ -22,6 +26,10 @@
     width: 7rem
     margin: 4.5rem 0 0 0
     position: relative
+    +mx-cursor
+
+    @media (max-width: $laptop)
+      display: none
 
     &--img
       max-width: 100%
@@ -36,8 +44,12 @@
 
   .lighter
     position: absolute
-    top: 0
+    top: 50%
+    transform: translateY(-50%)
     left: 45%
+
+    @media (max-width: $laptop)
+      display: none
 
     &__cat
       position: absolute
@@ -58,13 +70,17 @@
 
     &__img
       height: 100vh
+      max-height: 90rem
+
+      @media (max-height: 800px)
+        min-height: 80rem
 
     &__arrow
       width: 17.3rem
       position: absolute
       top: 50%
       opacity: .1
-      right: 0
+      left: 40vw
       transform: translateY(-50%)
       transition: opacity .4s
 

@@ -29,7 +29,15 @@ export default new Vuex.Store({
         next: ''
       }
     },
-    year: 0
+    year: 0,
+    display: {
+      current: window.innerWidth,
+      desktop: 1230,
+      laptop: 1150,
+      pad: 992,
+      padmini: 768,
+      mobile: 568
+    }
   },
   actions,
   getters,

@@ -1,11 +1,11 @@
 <template>
   <router-link v-if="route" :to="link" class="btn" :data-text="text">
     {{text}}
-    <span class="text">{{text}}</span>
+    <span v-if="$store.state.display.current > $store.state.display.pad" class="text">{{text}}</span>
   </router-link>
   <a v-else :href="link" class="btn" :data-text="text" target="_blank">
     {{text}}
-    <span class="text">{{text}}</span>
+    <span v-if="$store.state.display.current > $store.state.display.pad" class="text">{{text}}</span>
   </a>
 </template>
 
