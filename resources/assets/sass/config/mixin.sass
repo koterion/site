@@ -19,6 +19,15 @@
     &:before
       width: 100%
 
+=mx-glitch($name,$height)
+  $anim: 3
+  @for $i from 1 through $anim
+    @keyframes #{$name}-#{$i}
+      $steps:20
+      @for $a from 0 through $steps
+        #{percentage($a*(1/$steps))}
+          clip: rect(random($height)+px,9999px,random($height)+px,0)
+
 =mx-btn($top: 3rem, $width: 28rem)
   position: relative
   display: inline-flex
@@ -38,6 +47,7 @@
   transition: color .4s, border-color .4s, background-color .4s
   border-radius: 3px
   +mx-cursor
+  +mx-glitch('btn', 80)
 
   .text
     display: none
@@ -60,21 +70,21 @@
     .text
       top: 0
       left: 0
-      animation: glitch-1 4s infinite linear alternate-reverse
+      animation: btn-1 4s infinite linear alternate-reverse
       filter: drop-shadow(-1px 0 green)
       z-index: 2
 
     &:after
       top: 1px
       left: 1px
-      animation: glitch-2 3s infinite linear alternate-reverse
+      animation: btn-2 3s infinite linear alternate-reverse
       filter: drop-shadow(1px 0 blue)
       z-index: 3
 
     &:before
       top: -1px
       left: -1px
-      animation: glitch-3 2s infinite linear alternate-reverse
+      animation: btn-3 2s infinite linear alternate-reverse
       filter: drop-shadow(-1px 0 red)
       z-index: 4
 
@@ -86,15 +96,7 @@
       opacity: .7
 
   &.disabled
-    border-color: #574A54
-    color: #574A54
+    border-color: $gray
+    color: $gray
     cursor: no-drop
     background-color: transparent
-
-$anim: 3
-@for $i from 1 through $anim
-  @keyframes glitch-#{$i}
-    $steps:20
-    @for $a from 0 through $steps
-      #{percentage($a*(1/$steps))}
-        clip: rect(random(80)+px,9999px,random(80)+px,0)

@@ -1,6 +1,7 @@
 import Home from '../../views/Home'
 import Portfolio from '../../views/portfolio/all'
 import PortfolioOne from '../../views/portfolio/one'
+import Error from '../../views/error/404'
 
 const routes = [
   { path: '/', name: 'home', component: Home },
@@ -12,7 +13,7 @@ const routes = [
   { path: '/pet-projects/:id', component: PortfolioOne },
   { path: '/blog', name: 'blog', component: Portfolio },
   { path: '/blog/:id', component: PortfolioOne },
-  { path: '*', component: Home }
+  { path: '*', name: 'error', component: Error }
 ]
 
 export default routes

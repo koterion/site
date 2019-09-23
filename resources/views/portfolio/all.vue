@@ -1,5 +1,6 @@
 <template>
   <div class="portfolio box-sm">
+    <vue-headful :title="header.title"></vue-headful>
     <nav class="portfolio__time">
       <button v-for="year in portfolio.years"
               :class="['portfolio__time--item', { active: currentYear === year }]" @click="changeYear(year)">
@@ -8,7 +9,8 @@
         <span v-if="$store.state.display.current > $store.state.display.mobile" class="dop">portfolio</span>
       </button>
     </nav>
-    <div :class="['portfolio__list',$store.state.tab, {active: $store.state.animation}]">
+    <div :class="['portfolio__change', {hide: !this.change}, {active: this.change}]"></div>
+    <div :class="['portfolio__list', $store.state.tab, {active: $store.state.animation}]">
       <div class="portfolio__item" v-for="item in portfolio.group[currentYear]">
         <div class="portfolio__item--block">
           <h3 class="portfolio__item--title">{{item.title}}</h3>
@@ -35,7 +37,6 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import Btn from '../components/btn'
 
   export default {
     data: function () {
@@ -44,11 +45,9 @@
         header: {
           title: 'Koterion | Portfolio',
           add: 'portfolio'
-        }
+        },
+        change: false
       }
-    },
-    components: {
-      Btn
     },
     computed: {
       ...mapGetters({
@@ -58,7 +57,23 @@
     },
     methods: {
       changeYear(year) {
-        this.$store.dispatch('clickYearTab', year)
+        const changeDiv = document.querySelector('.portfolio__change')
+
+        if (!this.change) {
+          this.change = !this.change
+
+          setTimeout(()=>{
+            this.$store.dispatch('clickYearTab', year)
+
+            setTimeout(()=>{
+              changeDiv.classList.remove('active')
+
+              setTimeout(() => {
+                this.change = !this.change
+              }, 200)
+            }, 300)
+          }, 200)
+        }
       }
     }
   }

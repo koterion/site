@@ -1,5 +1,6 @@
 <template>
   <div class="portfolio__one box-page">
+    <vue-headful :title="portfolio.current.title"></vue-headful>
     <div class="carousel">
       <div class="icons">
         <div class="square"></div>
@@ -37,7 +38,6 @@
 <script>
   import Glide from '@glidejs/glide'
   import { mapGetters } from 'vuex'
-  import Btn from '../components/btn'
 
   let glide = new Glide('.glide', {
     type: 'carousel',
@@ -57,9 +57,6 @@
           }).mount()
         })
       }
-    },
-    components: {
-      Btn
     },
     beforeCreate () {
       this.$store.dispatch('fetchPortfolioOne', this.$route.params.id).then(() => {

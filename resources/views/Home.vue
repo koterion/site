@@ -1,9 +1,10 @@
 <template>
   <div class="home box-sm">
+    <vue-headful :title="header.title"></vue-headful>
     <div class="home__text">
       <h1 class="home__h1">I am
         <vue-typer
-          :text='["Team Lead","Front-End","Koterion", "Ihor"]'
+          :text='["Team Lead","Front-End Developer","Koterion", "Ihor"]'
           :pre-type-delay='40'
           :type-delay='80'
           :pre-erase-delay='2000'
@@ -15,7 +16,7 @@
                          aspernatur itaque! Eos corporis quidem aspernatur quibusdam expedita at dolorem omnis,
                          voluptatem quos labore dolores, saepe voluptatibus debitis!</p>
       <figure v-if="$store.state.display.current > $store.state.display.laptop" class="home__switcher" @click="!light ? moveEyes() : destroyEyes()">
-        <img class="home__switcher--img glitch-img" v-for="n in 4" :data-glitch="n" src="/img/cat-paw-stroke.svg" :alt="'cat pow ' + n">
+        <img class="home__switcher--img" v-for="n in 4" :data-glitch="n" src="/img/cat-paw-stroke.svg" :alt="'cat pow ' + n">
       </figure>
     </div>
     <div v-if="$store.state.display.current > $store.state.display.laptop" class="lighter">
@@ -50,6 +51,9 @@
     name: 'home',
     data: function () {
       return {
+        header: {
+          title: 'Koterion'
+        },
         name: 'home',
         light: false
       }
@@ -114,8 +118,8 @@
         }
 
         let hor = {
-          left: (y > 0 ? (y > yl ? -yl : -y) : (yl > y ? -yl < 0 ? 0 : -yl : -y)) + catParams.eyes.top,
-          right: (y > 0 ? (y > yr ? yr < 0 ? 0 : -yr : -y) : (yr > y ? -yr : -y)) + catParams.eyes.top
+          left: (y > 0 ? (y > yl ? yl < 0 ? 0 : -yl : -y) : (yl > y ? -yl < 0 ? 0 : -yl : -y)) + catParams.eyes.top,
+          right: (y > 0 ? (y > yr ? yr < 0 ? 0 : -yr : -y) : (yr > y ? -yr < 0 ? 0 : -yr : -y)) + catParams.eyes.top
         }
 
         let vert = {

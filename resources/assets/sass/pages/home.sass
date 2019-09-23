@@ -8,7 +8,7 @@
 
   &__text
     color: grey
-    width: 58.5rem
+    width: 60rem
     z-index: 1
 
   &__h1
@@ -28,6 +28,33 @@
     position: relative
     +mx-cursor
 
+    &--img
+      &:not([data-glitch='1'])
+        position: absolute
+        top: 0
+        clip: rect(0,900px,0,0)
+        +mx-glitch('noise-anim', 70)
+
+      &[data-glitch="2"]
+        left: -1px
+        animation: noise-anim-1 2s infinite linear alternate-reverse
+        z-index: 2
+        opacity: .9
+        filter: drop-shadow(-1px 0 red)
+
+      &[data-glitch="3"]
+        left: 1px
+        animation: noise-anim-2 3s infinite linear alternate-reverse
+        z-index: 1
+        opacity: .9
+        filter: drop-shadow(1px 0 blue)
+
+      &[data-glitch="4"]
+        left: 0
+        animation: noise-anim-3 4s infinite linear alternate-reverse
+        z-index: 0
+        filter: drop-shadow(1px 0 green)
+
     @media (max-width: $laptop)
       display: none
 
@@ -42,82 +69,82 @@
       &.caret
         background-color: #ccc
 
-  .lighter
+.lighter
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+  left: 45%
+
+  @media (max-width: $laptop)
+    display: none
+
+  &__cat
     position: absolute
     top: 50%
+    left: 30%
+
+    img
+      width: 100px
+      position: relative
+      z-index: 2
+
+  &__on, &__off
+    margin: 0
+    display: none
+
+    &.active
+      display: block
+
+  &__img
+    height: 100vh
+    max-height: 90rem
+
+    @media (max-height: 800px)
+      min-height: 80rem
+
+  &__arrow
+    width: 17.3rem
+    position: absolute
+    top: 50%
+    opacity: .1
+    left: 40vw
     transform: translateY(-50%)
-    left: 45%
+    transition: opacity .4s
 
-    @media (max-width: $laptop)
-      display: none
+    &:hover
+      opacity: .6
 
-    &__cat
-      position: absolute
-      top: 50%
-      left: 30%
+    &--img
+      max-width: 100%
 
-      img
-        width: 100px
-        position: relative
-        z-index: 2
+.eye
+  &__left
+    & .eye
+      &__pupil,&__light
+        top: 54px
+        left: 29px
 
-    &__on, &__off
-      margin: 0
-      display: none
+  &__right
+    & .eye
+      &__pupil,&__light
+        top: 54px
+        left: 70px
 
-      &.active
-        display: block
+  &__pupil,&__light
+    position: absolute
+    transition: left .1s ease, top .1s ease
+    background: white
+    transform: translate(-50%, -50%)
+    border-radius: 50%
 
-    &__img
-      height: 100vh
-      max-height: 90rem
+  &__pupil
+    width: 5px
+    height: 5px
+    z-index: 1
+    box-shadow: 0 0 3px 2px #ffffff
 
-      @media (max-height: 800px)
-        min-height: 80rem
-
-    &__arrow
-      width: 17.3rem
-      position: absolute
-      top: 50%
-      opacity: .1
-      left: 40vw
-      transform: translateY(-50%)
-      transition: opacity .4s
-
-      &:hover
-        opacity: .6
-
-      &--img
-        max-width: 100%
-
-  .eye
-    &__left
-      & .eye
-        &__pupil,&__light
-          top: 54px
-          left: 29px
-
-    &__right
-      & .eye
-        &__pupil,&__light
-          top: 54px
-          left: 70px
-
-    &__pupil,&__light
-      position: absolute
-      transition: left .1s ease, top .1s ease
-      background: white
-      transform: translate(-50%, -50%)
-      border-radius: 50%
-
-    &__pupil
-      width: 5px
-      height: 5px
-      z-index: 1
-      box-shadow: 0 0 3px 2px #ffffff
-
-    &__light
-      width: 0
-      height: 0
-      z-index: 3
-      box-shadow: 0 0 20px 5px #ffffff
+  &__light
+    width: 0
+    height: 0
+    z-index: 3
+    box-shadow: 0 0 20px 5px #ffffff

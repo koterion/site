@@ -22,7 +22,8 @@ export default new Vuex.Store({
         current: {
           title: '',
           content: '',
-          site: ''
+          site: '',
+          description: ''
         },
         images: '',
         prev: '',

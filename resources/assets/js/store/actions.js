@@ -43,6 +43,7 @@ export default {
     } else {
       try {
         const response = await Portfolio.show(Portfolio.getUrl(), id)
+        console.dir(response.data)
         commit('updatePortfolioOne', response.data)
       } catch (e) {
         throw new Error('Show Portfolio. ' + e.message)

@@ -5,7 +5,7 @@
 html
   font-size: 10px
   scrollbar-width: thin
-  scrollbar-color: #574A54 $bgColorMenu
+  scrollbar-color: $gray $bgColorMenu
   -ms-overflow-style: -ms-autohiding-scrollbar
 
   @media (max-width: $desktop)
@@ -38,7 +38,7 @@ body
     background-color: $bgColorMenu
 
   &::-webkit-scrollbar-thumb
-    background-color: #574A54
+    background-color: $gray
 
   &::-webkit-scrollbar
     width: 5px
@@ -97,52 +97,3 @@ body
 
 .btn
   +mx-btn()
-
-.glitch
-  &-img
-    &:not([data-glitch='1'])
-      position: absolute
-      top: 0
-      left: 0
-      clip: rect(0,900px,0,0)
-
-    &[data-glitch="2"]
-      left: -1px
-      top: 0
-      animation: noise-anim 2s infinite linear alternate-reverse
-      z-index: 2
-      opacity: .9
-      filter: drop-shadow(-1px 0 red)
-
-    &[data-glitch="3"]
-      left: 1px
-      top: 0
-      animation: noise-anim-2 3s infinite linear alternate-reverse
-      z-index: 1
-      opacity: .9
-      filter: drop-shadow(1px 0 blue)
-
-    &[data-glitch="4"]
-      left: 0
-      top: 0
-      animation: noise-anim-3 4s infinite linear alternate-reverse
-      z-index: 0
-      filter: drop-shadow(1px 0 green)
-
-@keyframes noise-anim
-  $steps:20
-  @for $i from 0 through $steps
-    #{percentage($i*(1/$steps))}
-      clip: rect(random(100)+px,9999px,random(100)+px,0)
-
-@keyframes noise-anim-2
-  $steps:20
-  @for $i from 0 through $steps
-    #{percentage($i*(1/$steps))}
-      clip: rect(random(100)+px,9999px,random(100)+px,0)
-
-@keyframes noise-anim-3
-  $steps:20
-  @for $i from 0 through $steps
-    #{percentage($i*(1/$steps))}
-      clip: rect(random(100)+px,9999px,random(100)+px,0)
