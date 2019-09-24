@@ -61,9 +61,9 @@
           let show = letter[num].dataset.show
           let count = minus ? 1 : -1
           if (show === '3') {
-            letter[num].dataset.show = count > 0 ? 1 : 2
+            letter[num].dataset.show = count > 0 ? '1' : '2'
           } else if (show === '1') {
-            letter[num].dataset.show = count > 0 ? 2 : 3
+            letter[num].dataset.show = count > 0 ? '2' : '3'
           } else {
             letter[num].dataset.show = +letter[num].dataset.show + count
           }

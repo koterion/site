@@ -6,10 +6,17 @@
   @media (max-height: 800px)
     min-height: 66rem
 
+  @media (max-width: $laptop)
+    min-height: calc(100vh - 14rem)
+
   &__text
     color: grey
-    width: 60rem
+    max-width: 60rem
+    width: 100%
     z-index: 1
+
+    @media (max-width: $laptop)
+      max-width: 80rem
 
   &__h1
     font-size: 4.2rem

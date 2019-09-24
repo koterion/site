@@ -1,37 +1,69 @@
 <template>
-  <div class="error">
-    <vue-headful :title="header.title"></vue-headful>
-    <div class="error__block">
-      <p class="error__block--num" data-content="4">4 <span class="text">4</span></p>
-      <div class="lighter__cat">
-        <img src="/img/cat.svg" alt="Cat head">
-        <div class="eye__left">
-          <div class="eye__pupil"></div>
-          <div class="eye__light"></div>
+  <div class="home box-sm">
+    <vue-headful :title="header.title" :description="header.description" :head="{
+      '[name=robots]' : {content: header.robots}
+    }"></vue-headful>
+    <div class="home__text">
+      <h1 v-if="!$store.state.loading" class="home__h1">I am
+        <vue-typer
+          :text='["Team Lead","Front-End Developer","Koterion", "Ihor"]'
+          :pre-type-delay='40'
+          :type-delay='80'
+          :pre-erase-delay='2000'
+          :erase-delay='50'
+          erase-style='backspace'
+        ></vue-typer>
+      </h1>
+      <p class="home__p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, culpa dolorem deleniti
+                         aspernatur itaque! Eos corporis quidem aspernatur quibusdam expedita at dolorem omnis,
+                         voluptatem quos labore dolores, saepe voluptatibus debitis!</p>
+      <figure v-if="$store.state.display.current > $store.state.display.laptop" class="home__switcher" @click="!light ? moveEyes() : destroyEyes()">
+        <img class="home__switcher--img" v-for="n in 4" :data-glitch="n" src="/img/cat-paw-stroke.svg" :alt="'cat pow ' + n">
+      </figure>
+    </div>
+    <div v-if="$store.state.display.current > $store.state.display.laptop" class="lighter">
+      <figure :class="['lighter__on', {active: light}]">
+        <img class="lighter__img" src="/img/lighter_on.png" alt="Lighter">
+        <div class="lighter__cat">
+          <img src="/img/icon.svg" alt="Cat head">
+          <div class="eye__left">
+            <div class="eye__pupil"></div>
+            <div class="eye__light"></div>
+          </div>
+          <div class="eye__right">
+            <div class="eye__pupil"></div>
+            <div class="eye__light"></div>
+          </div>
         </div>
-        <div class="eye__right">
-          <div class="eye__pupil"></div>
-          <div class="eye__light"></div>
-        </div>
-      </div>
-      <p class="error__block--num" data-content="4">4 <span class="text">4</span></p>
+        <router-link class="lighter__arrow" :to="{name: 'portfolio'}">
+          <img class="lighter__arrow--img" src="/img/arrow-portfolio.svg" alt="Portfolio arrow">
+        </router-link>
+      </figure>
+      <figure :class="['lighter__off', {active: !light}]">
+        <img class="lighter__img" src="/img/lighter_off.png" alt="Lighter">
+      </figure>
     </div>
   </div>
 </template>
 
 <script>
+  import { VueTyper } from 'vue-typer'
+
   export default {
+    name: 'home',
     data: function () {
       return {
         header: {
-          title: 'Koterion | 404'
-        }
+          title: 'Koterion',
+          description: 'Koterion home page',
+          robots: 'index,follow'
+        },
+        name: 'home',
+        light: false
       }
     },
-    mounted() {
-      if (this.$store.state.display.current > this.$store.state.display.laptop) {
-        this.moveEyes()
-      }
+    components: {
+      'vue-typer': VueTyper
     },
     methods: {
       moveEyes: function () {

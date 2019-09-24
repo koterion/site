@@ -1,7 +1,7 @@
-import Home from '../../views/Home'
-import Portfolio from '../../views/portfolio/all'
-import PortfolioOne from '../../views/portfolio/one'
-import Error from '../../views/error/404'
+import Home from './views/Home'
+import Portfolio from './views/portfolio/all'
+import PortfolioOne from './views/portfolio/one'
+import Error from './views/error/404'
 
 const routes = [
   { path: '/', name: 'home', component: Home },

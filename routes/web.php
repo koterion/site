@@ -16,7 +16,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/{any}', function () {
-    return view('index');
+    return view('vue');
 })->where('any', '.*');
 
 

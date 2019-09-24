@@ -1,13 +1,18 @@
 <template>
   <div class="portfolio__one box-page">
-    <vue-headful :title="portfolio.current.title"></vue-headful>
+    <vue-headful :title="portfolio.current.title" :description="portfolio.current.description" :head="{
+      '[name=robots]' : {content: header.robots}
+    }"></vue-headful>
     <div class="carousel">
       <div class="icons">
         <div class="square"></div>
         <div class="triangle"></div>
         <div class="circle"></div>
       </div>
-      <div v-if="portfolio" class="glide">
+
+      <video v-if="portfolio.current.video" class="portfolio__one--video"  :src="portfolio.current.video" preload="auto" autoplay loop muted></video>
+
+      <div v-else class="glide">
         <div class="glide__track" data-glide-el="track">
           <div class="glide__slides">
             <figure v-for="(image, index) in portfolio.images" class="glide__slide carousel__image">
@@ -18,12 +23,14 @@
         <div class="glide__bullets" data-glide-el="controls[nav]">
           <button v-for="(image, index) in portfolio.images" class="glide__bullet" :data-glide-dir="'='+index"></button>
         </div>
-        <btn :link="portfolio.current.site" :text="'Visit the website'" class="portfolio__one--btn"/>
       </div>
+    </div>
+    <div v-if="portfolio.current.site" class="carousel__after">
+      <btn :link="portfolio.current.site" :text="'Visit the website'" class="portfolio__one--btn"/>
     </div>
     <div class="gui">
       <h1>{{portfolio.current.title}}</h1>
-      {{portfolio.current.content}}
+      <div v-html="portfolio.current.content"></div>
       <div class="clear"></div>
     </div>
     <div class="portfolio__one--footer">
@@ -37,7 +44,7 @@
 
 <script>
   import Glide from '@glidejs/glide'
-  import { mapGetters } from 'vuex'
+  import { mapState } from 'vuex'
 
   let glide = new Glide('.glide', {
     type: 'carousel',
@@ -46,27 +53,36 @@
   })
 
   export default {
+    data: function () {
+      return {
+        header: {
+          robots: 'noindex,nofollow'
+        }
+      }
+    },
     watch: {
       '$route.params.id' () {
-        this.$store.dispatch('fetchPortfolioOne', this.$route.params.id).then(() => {
-          glide.destroy()
-          glide = new Glide('.glide', {
-            type: 'carousel',
-            perView: 1,
-            autoplay: 6500
-          }).mount()
+        this.$store.dispatch('portfolios/fetchPortfolioOne', this.$route.params.id).then(() => {
+          if (!this.portfolio.current.video) {
+            glide.destroy()
+            glide = new Glide('.glide', {
+              type: 'carousel',
+              perView: 1,
+              autoplay: 6500
+            }).mount()
+          }
         })
       }
     },
     beforeCreate () {
-      this.$store.dispatch('fetchPortfolioOne', this.$route.params.id).then(() => {
-        glide.mount()
+      this.$store.dispatch('portfolios/fetchPortfolioOne', this.$route.params.id).then(() => {
+        if (!this.portfolio.current.video) {
+          glide.mount()
+        }
       })
     },
-    computed: {
-      ...mapGetters({
-        portfolio: 'getPortfolioOne'
-      })
-    }
+    computed: mapState({
+      portfolio: state => state.portfolios.one
+    })
   }
 </script>

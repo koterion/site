@@ -18,12 +18,12 @@
                      :tag="$route.name !== 'portfolio' && $route.name !== 'portfolio.one' ? 'a' : 'div'"
                      class="header__menu--a"> Portfolio
         </router-link>
-        <router-link :to="{name: 'pet-projects'}" :tag="$route.name !== 'pet-projects' ? 'a' : 'div'"
-                     class="header__menu--a"> Pet Projects
-        </router-link>
-        <router-link :to="{name: 'blog'}" :tag="$route.name !== 'blog' && $route.name !== 'blog.one' ? 'a' : 'div'"
-                     class="header__menu--a"> Blog
-        </router-link>
+<!--        <router-link :to="{name: 'pet-projects'}" :tag="$route.name !== 'pet-projects' ? 'a' : 'div'"-->
+<!--                     class="header__menu&#45;&#45;a"> Pet Projects-->
+<!--        </router-link>-->
+<!--        <router-link :to="{name: 'blog'}" :tag="$route.name !== 'blog' && $route.name !== 'blog.one' ? 'a' : 'div'"-->
+<!--                     class="header__menu&#45;&#45;a"> Blog-->
+<!--        </router-link>-->
         <router-link :to="{name: 'contacts'}" :tag="$route.name !== 'contacts' ? 'a' : 'div'" class="header__menu--a">
           Contacts
         </router-link>

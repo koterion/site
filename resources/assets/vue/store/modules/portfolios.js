@@ -1,18 +1,20 @@
-import Portfolio from '../models/Portfolio'
+import Portfolio from '../../models/Portfolio'
 
-export default {
-  fetchLoading ({ commit }, data) {
-    commit('changeLoading', data)
+const state = {
+  all: {
+    years: {},
+    group: {},
+    collection: {}
   },
-  toggleMenu ({ commit }, data) {
-    commit('changeMenu', data)
+  one: {
+    current: {}
   },
-  toggleTab ({ commit }) {
-    commit('changeTab')
-  },
-  turnAnimation ({ commit }) {
-    commit('changeAnimation')
-  },
+  year: 0
+}
+
+const getters = {}
+
+const actions = {
   async fetchPortfolio ({ commit }, page = 1) {
     try {
       const response = await Portfolio.index(Portfolio.getUrl(), page)
@@ -27,7 +29,7 @@ export default {
     commit('updateYearTab', year)
   },
   async fetchPortfolioOne ({ commit, state }, id = 1) {
-    const collection = state.portfolio.all.collection
+    const collection = state.all.collection
     const all = Object.values(collection)
 
     if (all.length > 0) {
@@ -43,11 +45,31 @@ export default {
     } else {
       try {
         const response = await Portfolio.show(Portfolio.getUrl(), id)
-        console.dir(response.data)
         commit('updatePortfolioOne', response.data)
       } catch (e) {
         throw new Error('Show Portfolio. ' + e.message)
       }
     }
   }
+}
+
+const mutations = {
+  updatePortfolio (state, data) {
+    state.all = data
+  },
+  updateYearTab (state, data) {
+    state.year = data
+  },
+  updatePortfolioOne (state, data) {
+    state.one = data
+    state.one.images = JSON.parse(data.current.carousel)
+  }
+}
+
+export default {
+  namespaced: true,
+  state,
+  getters,
+  actions,
+  mutations
 }

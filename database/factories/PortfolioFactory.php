@@ -19,15 +19,16 @@ $factory->define(\App\Models\Portfolio::class, function (Faker $faker) {
     return [
         'title'       => $faker->text(40),
         'author_id'   => !empty($author) ? $author->id : '',
-        'content'     => $faker->paragraph(10, true),
+        'content'     => '<p>' . $faker->paragraph(10, true) . '</p>',
         'description' => $faker->paragraph(3, true),
+        'video'       => '/video/portfolio.mp4',
         'carousel'    => json_encode(array(
-            $faker->imageUrl($width = 640, $height = 480),
-            $faker->imageUrl($width = 640, $height = 480),
-            $faker->imageUrl($width = 640, $height = 480),
-            $faker->imageUrl($width = 640, $height = 480),
+            '/img/portfolio.png',
+            '/img/portfolio.png',
+            '/img/portfolio.png',
+            '/img/portfolio.png',
         )),
-        'image'       => $faker->imageUrl($width = 640, $height = 480),
+        'image'       => '/img/portfolio.png',
         'site'        => $faker->url,
         'year'        => $faker->year($max = 'now'),
     ];

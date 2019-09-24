@@ -18,15 +18,5 @@ export default {
   },
   changeAnimation (state) {
     state.animation = !state.animation
-  },
-  updatePortfolio (state, data) {
-    state.portfolio.all = data
-  },
-  updateYearTab (state, data) {
-    state.year = data
-  },
-  updatePortfolioOne (state, data) {
-    state.portfolio.one = data
-    state.portfolio.one.images = JSON.parse(data.current.carousel)
   }
 }

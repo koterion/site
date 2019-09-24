@@ -344,29 +344,23 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
   flex-wrap: wrap
   justify-content: space-between
   position: relative
-  
-  &__change
-    opacity: 0
+
+  &__block
+    min-height: 61.5rem
     width: 100%
-    height: 100%
-    position: absolute
-    top: 0
-    left: 0
-    z-index: 1
-    background: $bgColor
-    transition: opacity .2s
-
-    &.hide
-      z-index: -1
-
-    &.active
-      opacity: 1
 
   &__list
     width: 100%
     display: flex
     flex-wrap: wrap
     justify-content: space-between
+    transition: opacity .4s
+
+    &.v-leave-active,&.v-enter-active
+      opacity: 0
+
+    &.v-enter-to
+      opacity: 1
 
     @media (min-width: $mobile + 1px)
       margin-top: 9rem
@@ -658,6 +652,29 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
       .btn
         min-width: 36rem
 
+        span:not(.text)
+          margin-left: .8rem
+
+      @media (max-width: $padmini)
+        margin-top: 5rem
+
+        .btn
+          margin-top: 0
+          min-width: 30rem
+
+          span:not(.text)
+            display: none
+
+      @media (max-width: $mobile)
+        .btn
+          min-width: 46%
+
+    &--btn
+      margin-top: 0
+
+    &--video
+      max-width: 100%
+
 .icons
   position: absolute
   left: 1.2rem
@@ -705,10 +722,15 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
     top: 6px
 
 .carousel
+  position: relative
+  margin: 0 auto 5rem auto
   padding: 3.6rem
   background: #1C1C1C
-  position: relative
-  margin: 0 auto 20rem auto
+
+  @media (max-width: $mobile)
+    padding: 25px
+    width: calc(100% + 6rem)
+    margin: 0 -3rem 5rem -3rem
 
   &__image
     height: 67.5rem
@@ -726,9 +748,13 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
   .glide
     &__bullets
       position: absolute
-      bottom: -7rem
+      display: inline-flex
+      bottom: -11.6rem
       transform: translate3d(0,100%,0)
       left: -3.6rem
+
+      @media (max-width: $mobile)
+        display: none
 
     &__bullet
       border: none
@@ -750,6 +776,13 @@ $blockW: calc((96vw - 2*(40px + 6rem))/2)
     bottom: -7rem
     transform: translate3d(0,100%,0)
     right: -3.6rem
+
+  &__after
+    text-align: right
+    margin-bottom: 5rem
+
+    @media (max-width: $mobile)
+      text-align: center
 
 .clear
   clear: both

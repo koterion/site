@@ -1,36 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import actions from './actions'
-import getters from './getters'
 import mutations from './mutations'
+import portfolios from './modules/portfolios'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  modules: {
+    portfolios
+  },
   state: {
     loading: true,
     menu: false,
     tab: '',
     animation: false,
-    portfolio: {
-      all: {
-        years: {},
-        group: {},
-        collection: {}
-      },
-      one: {
-        current: {
-          title: '',
-          content: '',
-          site: '',
-          description: ''
-        },
-        images: '',
-        prev: '',
-        next: ''
-      }
-    },
-    year: 0,
     display: {
       current: window.innerWidth,
       desktop: 1230,
@@ -41,6 +25,5 @@ export default new Vuex.Store({
     }
   },
   actions,
-  getters,
   mutations
 })

@@ -23,6 +23,7 @@ class CreatePortfoliosTable extends Migration
                 $table->text('content')->nullable();
                 $table->string('image')->nullable();
                 $table->string('carousel')->nullable();
+                $table->string('video')->nullable();
                 $table->string('site')->nullable();
                 $table->unsignedInteger('author_id')->index();
                 $table->text('year')->nullable();

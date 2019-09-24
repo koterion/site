@@ -7,11 +7,11 @@ import VueHeadful from 'vue-headful'
 import routes from './routes'
 import store from './store'
 
-import Header from '../../views/components/header'
-import Loader from '../../views/components/loader'
-import Footer from '../../views/components/footer'
-import Transfer from '../../views/components/transfer'
-import Btn from '../../views/components/btn'
+import Header from './views/components/header'
+import Loader from './views/components/loader'
+import Footer from './views/components/footer'
+import Transfer from './views/components/transfer'
+import Btn from './views/components/btn'
 
 import axios from 'axios'
 
@@ -46,8 +46,6 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   store.dispatch('toggleMenu', false)
-  document.body.scrollTop = 0
-  document.documentElement.scrollTop = 0
   const transfer = document.querySelector('.transfer')
 
   if (transfer) {
@@ -60,6 +58,8 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from) => {
   const transfer = document.querySelector('.transfer')
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
   if (transfer) {
     setTimeout(() => {
       transfer.classList.remove('active')
@@ -72,7 +72,7 @@ new Vue({
   store,
   async mounted () {
     const classList = document.body.classList
-    await store.dispatch('fetchPortfolio')
+    await store.dispatch('portfolios/fetchPortfolio')
 
     classList.add('start')
     setTimeout(function () {
