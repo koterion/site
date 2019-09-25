@@ -2,10 +2,9 @@
 
 import Vue from 'vue'
 
-import VueRouter from 'vue-router'
 import VueHeadful from 'vue-headful'
-import routes from './routes'
-import store from './store'
+import { createRouter } from './routes'
+import { createStore } from './store'
 
 import Header from './views/components/header'
 import Loader from './views/components/loader'
@@ -15,7 +14,6 @@ import Btn from './views/components/btn'
 
 import axios from 'axios'
 
-Vue.use(VueRouter)
 Vue.use(VueHeadful)
 
 Vue.component('vue-headful', VueHeadful)
@@ -24,6 +22,9 @@ Vue.component('vue-header', Header)
 Vue.component('vue-transfer', Transfer)
 Vue.component('vue-footer', Footer)
 Vue.component('btn', Btn)
+
+const store = createStore()
+const router = createRouter()
 
 Vue.prototype.$axios = axios
 
@@ -37,11 +38,6 @@ Vue.mixin({
       }
     }
   }
-})
-
-const router = new VueRouter({
-  mode: 'history',
-  routes
 })
 
 router.beforeEach((to, from, next) => {

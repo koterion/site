@@ -16,7 +16,7 @@
         <div class="glide__track" data-glide-el="track">
           <div class="glide__slides">
             <figure v-for="(image, index) in portfolio.images" class="glide__slide carousel__image">
-              <img :src="image" :alt="index">
+              <img :src="'/storage/'+image" :alt="index">
             </figure>
           </div>
         </div>
@@ -71,6 +71,9 @@
               autoplay: 6500
             }).mount()
           }
+        }).catch((e) => {
+          this.$router.push({ name: 'error', params: { 0: this.$route.params.id } })
+          throw new Error(e)
         })
       }
     },
@@ -79,6 +82,9 @@
         if (!this.portfolio.current.video) {
           glide.mount()
         }
+      }).catch((e) => {
+        this.$router.push({ name: 'error', params: { 0: this.$route.params.id } })
+        throw new Error(e)
       })
     },
     computed: mapState({

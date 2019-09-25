@@ -1,7 +1,3 @@
-import Api, { PORTFOLIO } from '../common/Api.service'
+import Api from '../common/Api.service'
 
-export default class Provider extends Api {
-  static getUrl () {
-    return PORTFOLIO
-  }
-}
+export default class Portfolio extends Api {}

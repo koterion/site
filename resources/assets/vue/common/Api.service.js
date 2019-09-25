@@ -1,13 +1,15 @@
 import axios from 'axios'
 
-export const PORTFOLIO = '/api/portfolio'
-
 export default class Api {
-  static index (url, page = 1) {
+  static index (page = 1, url = '/api/' + this.name.toLowerCase()) {
     return axios(url + '?page=' + page)
   }
 
-  static show (url, id) {
+  static show (id, url = '/api/' + this.name.toLowerCase()) {
     return axios(url + '/' + id)
+  }
+
+  static getUrl () {
+    return '/api/' + this.name.toLowerCase()
   }
 }

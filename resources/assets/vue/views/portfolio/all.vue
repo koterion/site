@@ -8,7 +8,7 @@
               :class="['portfolio__time--item', { active: currentYear === year }]" @click="changeYear(year)">
         <span v-if="year !== portfolios.years[portfolios.years.length - 1]">{{year}}</span>
         <span v-else>Now</span>
-        <span v-if="$store.state.display.current > $store.state.display.mobile" class="dop">portfolio</span>
+        <span v-if="$store.getters.getDisplay('mobile')" class="dop">portfolio</span>
       </button>
     </nav>
     <div class="portfolio__block">
@@ -30,7 +30,7 @@
                 <div class="circle"></div>
               </div>
               <figure class="image">
-                <img :src="item.image" :alt="item.title">
+                <img :src="'/storage/'+item.image" :alt="item.title">
               </figure>
             </div>
           </div>

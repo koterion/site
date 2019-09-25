@@ -73,6 +73,7 @@
         if (!this.$store.state.animation){
           this.$store.dispatch('turnAnimation')
           this.$store.dispatch('toggleTab')
+
           setTimeout(() => {
             this.$store.dispatch('turnAnimation')
           }, 1200)
