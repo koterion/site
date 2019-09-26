@@ -19,14 +19,16 @@ class CreatePortfoliosTable extends Migration
             Schema::create(self::$table, function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('title');
+                $table->string('site')->nullable();
+                $table->text('year')->nullable();
+                $table->string('image')->nullable();
                 $table->text('description')->nullable();
                 $table->text('content')->nullable();
-                $table->string('image')->nullable();
                 $table->string('carousel')->nullable();
                 $table->string('video')->nullable();
-                $table->string('site')->nullable();
+                $table->unsignedInteger('order')->nullable();
+                $table->boolean('status')->default(0);
                 $table->unsignedInteger('author_id')->index();
-                $table->text('year')->nullable();
                 $table->timestamps();
             });
         } else {

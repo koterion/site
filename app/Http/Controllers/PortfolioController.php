@@ -3,35 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Portfolio;
-use App\Traits\Controllers\HasPagination;
-use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
 {
-    use HasPagination;
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
-     */
-
-    public function all(Request $request)
+    public function all()
     {
-        $collection = Portfolio::all()->sortBy('year');
-        $group = $collection->groupBy('year');
+        $collection = Portfolio::all()->sortBy('order');
+        $group = $collection->groupBy('year')->sortKeys();
 
-        return [
+        $concatenated = collect([
             'group'      => $group,
-            'collection' => $collection->sortBy('id'),
+            'collection' => $collection,
             'years'      => $group->keys(),
-        ];
+        ]);
+
+        return $concatenated;
     }
 
-    /**
-     * @param Request $request
-     * @param Portfolio $portfolio
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function one($id)
     {
         $portfolio = Portfolio::all()->sortBy('id');

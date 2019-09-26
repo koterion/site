@@ -1,5 +1,7 @@
 import Portfolio from '../../models/Portfolio'
 
+const PortfolioModule = new Portfolio()
+
 export default {
   namespaced: true,
 
@@ -18,9 +20,9 @@ export default {
   getters: {},
 
   actions: {
-    async fetchPortfolio ({ commit }, page = 1) {
+    async fetchPortfolio ({ commit }) {
       try {
-        const response = await Portfolio.index(page)
+        const response = await PortfolioModule.index()
         commit('updatePortfolio', response.data)
         commit('updateYearTab', response.data.years[response.data.years.length - 1])
       } catch (e) {
@@ -51,7 +53,7 @@ export default {
         }
       } else {
         try {
-          const response = await Portfolio.show(id)
+          const response = await PortfolioModule.show(id)
           commit('updatePortfolioOne', response.data)
         } catch (e) {
           throw new Error('Show Portfolio.')
@@ -69,7 +71,14 @@ export default {
     },
     updatePortfolioOne (state, data) {
       state.one = data
-      state.one.images = JSON.parse(data.current.carousel)
+
+      if (typeof data.current.carousel === 'string') {
+        state.one.current.carousel = JSON.parse(data.current.carousel)
+      }
+
+      if (typeof data.current.video === 'string') {
+        state.one.current.video = JSON.parse(data.current.video)
+      }
     }
   }
 }

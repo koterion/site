@@ -10,18 +10,18 @@
         <div class="circle"></div>
       </div>
 
-      <video v-if="portfolio.current.video" class="portfolio__one--video"  :src="portfolio.current.video" preload="auto" autoplay loop muted></video>
+      <video v-if="portfolio.current.video" class="portfolio__one--video"  :src="'/storage/'+portfolio.current.video[0].download_link" preload="auto" autoplay loop muted></video>
 
       <div v-else class="glide">
         <div class="glide__track" data-glide-el="track">
           <div class="glide__slides">
-            <figure v-for="(image, index) in portfolio.images" class="glide__slide carousel__image">
+            <figure v-for="(image, index) in portfolio.current.carousel" class="glide__slide carousel__image">
               <img :src="'/storage/'+image" :alt="index">
             </figure>
           </div>
         </div>
         <div class="glide__bullets" data-glide-el="controls[nav]">
-          <button v-for="(image, index) in portfolio.images" class="glide__bullet" :data-glide-dir="'='+index"></button>
+          <button v-for="(image, index) in portfolio.current.carousel" class="glide__bullet" :data-glide-dir="'='+index"></button>
         </div>
       </div>
     </div>
