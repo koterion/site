@@ -3,10 +3,10 @@ const autoprefixer = require('autoprefixer')
 const Dotenv = require('dotenv-webpack')
 
 mix.js('resources/assets/vue/vue.js', 'public/js')
-  .extract(['vue', 'vue-router', 'vue-headful'])
   .sass('resources/assets/sass/loader.sass', 'public/css')
   .sass('resources/assets/sass/main.sass', 'public/css')
   .sass('resources/assets/sass/config/general.sass', 'public/css')
+  .react('resources/assets/react/react.js', 'public/js')
 
   .webpackConfig({
     plugins: [

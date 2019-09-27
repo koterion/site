@@ -7,16 +7,12 @@
     <link rel="stylesheet" href="{{asset('css/loader.css')}}">
 </head>
 <body>
-<main id="app">
-    <vue-loader></vue-loader>
-    <vue-transfer></vue-transfer>
-    <vue-header></vue-header>
-    <router-view></router-view>
-    <vue-footer></vue-footer>
-</main>
+<div id="root">
+
+</div>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{asset('css/general.css')}}">
 <link rel="stylesheet" href="{{asset('css/main.css')}}">
-<script src="{{asset('js/vue.js')}}"></script>
+<script src="{{asset('js/react.js')}}"></script>
 </body>
 </html>
