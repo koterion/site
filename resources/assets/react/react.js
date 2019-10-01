@@ -1,8 +1,28 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import { createLogger } from 'redux-logger'
+import thunk from 'redux-thunk'
+import reducer from './store/reducers'
+import { getAllPortfolios } from './store/actions'
 import App from './routes'
 
+const middleware = [thunk]
+if (process.env.NODE_ENV !== 'production') {
+  middleware.push(createLogger())
+}
+
+const store = createStore(
+  reducer,
+  applyMiddleware(...middleware)
+)
+
+store.dispatch(getAllPortfolios())
+
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+  document.getElementById('app')
 )

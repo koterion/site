@@ -2,6 +2,35 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Logo extends Component {
+  constructor (props) {
+    super(props)
+    this.logo = React.createRef()
+  }
+
+  componentDidMount () {
+    const blocks = this.logo.current.children
+
+    function changeData(num, minus) {
+      for (let i = 0; i < blocks.length; i++) {
+        let letter =  blocks[i].children
+
+        let show = letter[num].dataset.show
+        let count = minus ? 1 : -1
+        if (show === '3') {
+          letter[num].dataset.show = count > 0 ? '1' : '2'
+        } else if (show === '1') {
+          letter[num].dataset.show = count > 0 ? '2' : '3'
+        } else {
+          letter[num].dataset.show = +letter[num].dataset.show + count
+        }
+      }
+    }
+
+    setInterval(function () {
+      changeData(Math.floor(Math.random() * 8), Math.floor(Math.random() * 2))
+    }, 300)
+  }
+
   render () {
     const items = []
 
@@ -152,7 +181,7 @@ class Logo extends Component {
     }
 
     return (
-      <div className={'logo ' + this.props.class}>
+      <div className={'logo ' + this.props.class} ref={this.logo}>
         {items}
       </div>
     )

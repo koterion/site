@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { matchPath, NavLink, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import Logo from './logo'
+import { togglePortfolioAnimation, togglePortfolioTab } from '../store/actions'
+import { getPortfolioAnimation, getPortfolioTab } from '../store/reducers/portfolios'
+import PropTypes from 'prop-types'
 
 class Header extends Component {
   constructor (props) {
@@ -10,39 +14,71 @@ class Header extends Component {
     }
   }
 
-  toggleMenu () {
+  toggleMenu (toggle = false) {
     const menu = this.state.menu
-    this.setState({
-      menu: !menu
-    })
+    if (!toggle) {
+      this.setState({
+        menu: false
+      })
+    } else {
+      this.setState({
+        menu: !menu
+      })
+    }
+  }
+
+  toggleTab () {
+    if (!this.props.animation){
+      this.props.dispatch(togglePortfolioAnimation(this.props.animation))
+      this.props.dispatch(togglePortfolioTab(this.props.tab))
+
+      setTimeout(() => {
+        this.props.dispatch(togglePortfolioAnimation(this.props.animation))
+      }, 1200)
+    }
   }
 
   render () {
-    let btn
-    if (location.pathname.search('portfolio/') === 1) {
-      btn = (
-        <NavLink className="header__back" to='/portfolio'>
-          <div className="header__back--item"></div>
+    const { location, routes, tab } = this.props
+
+    let back
+    if (matchPath(location.pathname, { path: routes.portfolio.one, exact: true })) {
+      back = (
+        <NavLink className="header__back" to={routes.portfolio.all}>
+          <div className="header__back--item"/>
         </NavLink>
       )
     } else {
-      btn = (
-        <div className={`header__burger ${this.state.menu ? 'active' : ''}`} onClick={i => this.toggleMenu(i)}>
-          <div className="header__burger--item"></div>
+      back = (
+        <div className={`header__burger ${this.state.menu ? 'active' : ''}`} onClick={() => this.toggleMenu(true)}>
+          <div className="header__burger--item"/>
         </div>
       )
     }
 
+    let logo
+    if (matchPath(location.pathname, { path: routes.home, exact: true })) {
+      logo = (<Logo class="header__logo"/>)
+    } else {
+      logo = (
+        <NavLink exact to={routes.home} onClick={() => this.toggleMenu()}><Logo class="header__logo"/></NavLink>
+      )
+    }
+
+    let tabBtn = matchPath(location.pathname, { path: routes.portfolio.all, exact: true })
+
     return (
       <header className={`header ${this.state.menu ? 'active' : ''}`}>
-        <Logo class="header__logo"/>
-        {btn}
+        {logo}
+        {back}
         <section className="header__info">
           <nav className="header__menu">
-            <NavLink className="header__menu--a" to="/about-me" activeClassName="router-link-active" onClick={i => this.toggleMenu(i)}>About Me</NavLink>
-            <NavLink className="header__menu--a" to="/portfolio" activeClassName="router-link-active"
-                     exact onClick={i => this.toggleMenu(i)}>Portfolio</NavLink>
-            <NavLink className="header__menu--a" to="/contacts" activeClassName="router-link-active" onClick={i => this.toggleMenu(i)}>Contacts</NavLink>
+            <NavLink className="header__menu--a" to={routes.about} activeClassName="router-link-active"
+                     onClick={() => this.toggleMenu()}>About Me</NavLink>
+            <NavLink className="header__menu--a" to={routes.portfolio.all} activeClassName="router-link-active"
+                     exact onClick={() => this.toggleMenu()}>Portfolio</NavLink>
+            <NavLink className="header__menu--a" to={routes.contacts} activeClassName="router-link-active"
+                     onClick={() => this.toggleMenu()}>Contacts</NavLink>
           </nav>
           <nav className="header__social">
             <a className="header__social--a" href="https://github.com" target="_blank">
@@ -66,9 +102,25 @@ class Header extends Component {
             </a>
           </nav>
         </section>
+        {tabBtn &&
+        (<div className={`header__tab ${tab ? tab : 'row'}`}
+              onClick={() => this.toggleTab()}>
+          <div className="header__tab--item"/>
+          <div className="header__tab--item"/>
+        </div>)}
       </header>
     )
   }
 }
 
-export default Header
+Header.propTypes = {
+  tab: PropTypes.string.isRequired,
+  animation: PropTypes.bool.isRequired
+}
+
+const mapStateToProps = state => ({
+  tab: getPortfolioTab(state.portfolios),
+  animation: getPortfolioAnimation(state.portfolios)
+})
+
+export default connect(mapStateToProps)(withRouter(Header))

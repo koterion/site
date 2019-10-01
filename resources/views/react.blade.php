@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{asset('css/loader.css')}}">
 </head>
 <body>
-<div id="root">
+<div id="app">
 
 </div>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">

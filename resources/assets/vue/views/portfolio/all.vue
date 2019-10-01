@@ -46,7 +46,6 @@
   export default {
     data: function () {
       return {
-        loading: true,
         header: {
           title: 'Koterion | Portfolio',
           description: 'Koterion Portfolio Page',
