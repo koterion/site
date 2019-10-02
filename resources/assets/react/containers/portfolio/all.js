@@ -9,12 +9,38 @@ class Portfolios extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      animation: false
+      animation: false,
+      year: true
     }
+    this.list = React.createRef()
   }
 
   changeYear (year) {
-    this.props.dispatch(clickYearTab(year))
+    if (this.state.year) {
+      this.setState({
+        year: false
+      })
+
+      const list = this.list.current
+      list.classList.add('v-leave-active')
+
+      setTimeout(async () => {
+        await this.props.dispatch(clickYearTab(year))
+
+        setTimeout(() => {
+          list.classList.add('v-enter-to')
+
+          setTimeout(() => {
+            list.classList.remove('v-leave-active')
+            list.classList.remove('v-enter-to')
+
+            this.setState({
+              year: true
+            })
+          }, 400)
+        }, 250)
+      }, 300)
+    }
   }
 
   render () {
@@ -41,7 +67,7 @@ class Portfolios extends Component {
           }
         </nav>
         <div className="portfolio__block">
-          <div className={`portfolio__list ${tab} ${animation ? 'active' : ''}`}>
+          <div className={`portfolio__list ${tab} ${animation ? 'active' : ''}`} ref={this.list}>
             {Object.keys(portfolios.group).length > 0 && currentYear &&
             portfolios.group[currentYear].map((item, i) => (
               <div

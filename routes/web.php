@@ -15,12 +15,6 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-//Route::get('/vue', function () {
-//    return view('vue');
-//});
-
-Route::get('/{any}', function () {
-    return view('react');
-})->where('any', '.*');
+Route::get('/{any}', 'HomeController@index')->where('any', '.*');
 
 

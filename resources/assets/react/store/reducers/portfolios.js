@@ -13,6 +13,11 @@ const initial = {
     years: [],
     group: {}
   },
+  one: {
+    current: {},
+    prev: null,
+    next: null
+  },
   tab: 'row',
   animation: false
 }
@@ -26,10 +31,10 @@ const all = (state = initial.all, action) => {
   }
 }
 
-const current = (state = {}, action) => {
+const one = (state = initial.one, action) => {
   switch (action.type) {
     case RECEIVE_PORTFOLIO:
-      return Object.assign({}, state, action.one)
+      return Object.assign({}, state, action.current)
     default:
       return state
   }
@@ -64,7 +69,7 @@ const animation = (state = initial.animation, action) => {
 
 export default combineReducers({
   all,
-  current,
+  one,
   year,
   tab,
   animation

@@ -8,9 +8,9 @@ const receivePortfolios = all => ({
   all
 })
 
-const receivePortfolio = one => ({
+const receivePortfolio = current => ({
   type: types.RECEIVE_PORTFOLIO,
-  one
+  current
 })
 
 const receiveYearTab = year => ({
@@ -28,11 +28,11 @@ const receivePortfoliosAnimation = animation => ({
   animation
 })
 
-export const togglePortfolioTab = tab => (dispatch) => {
+export const togglePortfolioTab = tab => dispatch => {
   dispatch(receivePortfoliosTab(tab))
 }
 
-export const togglePortfolioAnimation = animation => (dispatch) => {
+export const togglePortfolioAnimation = animation => dispatch => {
   dispatch(receivePortfoliosAnimation(animation))
 }
 
@@ -47,20 +47,21 @@ export const getAllPortfolios = () => async dispatch => {
   }
 }
 
-export const clickYearTab = year => (dispatch) => {
+export const clickYearTab = year => dispatch => {
   dispatch(receiveYearTab(year))
 }
 
 export const getOnePortfolio = (id = 1) => async (dispatch, getState) => {
-  const collection = getState.all.collection
+  const collection = getState().portfolios.all.collection
   const all = Object.values(collection)
 
   if (all.length > 0) {
     const data = {}
-    const prev = all.filter(el => el.id < id)
-    const next = all.filter(el => el.id > id)
+    const prev = all.filter(el => el.id < +id)
+    const next = all.filter(el => el.id > +id)
 
-    data.current = all.find(x => x.id === id)
+    data.current = all.find(x => x.id === +id)
+
     data.prev = prev[prev.length - 1] ? prev[prev.length - 1].id : ''
     data.next = next[0] ? next[0].id : ''
 
@@ -80,15 +81,17 @@ export const getOnePortfolio = (id = 1) => async (dispatch, getState) => {
   } else {
     try {
       const response = await PortfolioModule.show(id)
-      if (typeof response.current.carousel === 'string') {
-        response.current.carousel = JSON.parse(response.current.carousel)
+      const data = response.data
+
+      if (typeof data.current.carousel === 'string') {
+        data.current.carousel = JSON.parse(data.current.carousel)
       }
 
-      if (typeof response.current.video === 'string') {
-        response.current.video = JSON.parse(response.current.video)
+      if (typeof data.current.video === 'string') {
+        data.current.video = JSON.parse(data.current.video)
       }
 
-      dispatch(receivePortfolio(response.data))
+      dispatch(receivePortfolio(data))
     } catch (e) {
       throw new Error('Show Portfolio.')
     }
