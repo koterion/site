@@ -24,8 +24,6 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{asset('css/general.css')}}">
 <link rel="stylesheet" href="{{asset('css/main.css')}}">
-<script src="{{asset('js/manifest.js')}}"></script>
-<script src="{{asset('js/vendor.js')}}"></script>
 <script src="{{asset('js/vue.js')}}"></script>
 </body>
 </html>

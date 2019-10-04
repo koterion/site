@@ -1,66 +1,111 @@
 {
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/koterion/site.git"
-    },
-    "description": "Koterion site",
-    "license": "MIT",
-    "private": true,
-    "standard": {
-        "envs": {
-            "browser": true,
-            "jquery": true,
-            "es6": true
-        }
-    },
-    "browserslist": [
-        "> 5%",
-        "last 4 versions",
-        "ie >= 10",
-        "Firefox ESR",
-        "Safari >= 10"
-    ],
-    "scripts": {
-        "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "npm run development -- --watch",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-    },
-    "devDependencies": {
-        "@babel/preset-react": "^7.0.0",
-        "autoprefixer": "^9.6.1",
-        "axios": "^0.19.0",
-        "browser-sync": "^2.26.7",
-        "browser-sync-webpack-plugin": "^2.2.2",
-        "cross-env": "^5.2.1",
-        "dotenv": "^8.1.0",
-        "dotenv-webpack": "^1.7.0",
-        "file-system": "^2.2.2",
-        "laravel-mix": "^4.1.4",
-        "sanitize.css": "^11.0.0",
-        "sass": "^1.22.12",
-        "sass-loader": "^7.3.1",
-        "vue": "^2.6.10",
-        "vue-headful": "^2.0.1",
-        "vue-router": "^3.1.3",
-        "vue-template-compiler": "^2.6.10",
-        "vuex": "^3.1.1"
-    },
-    "dependencies": {
-        "@glidejs/glide": "^3.3.0",
-        "prop-types": "^15.7.2",
-        "react": "^16.10.1",
-        "react-dom": "^16.10.1",
-        "react-redux": "^7.1.1",
-        "react-router": "^5.1.1",
-        "react-router-dom": "^5.1.1",
-        "redux": "^4.0.4",
-        "redux-logger": "^3.0.6",
-        "redux-thunk": "^2.3.0",
-        "standard": "^14.3.1",
-        "vue-typer": "^1.2.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/koterion/site.git"
+  },
+  "description": "Koterion site",
+  "license": "MIT",
+  "private": true,
+  "standard": {
+    "envs": {
+      "browser": true,
+      "jquery": true,
+      "es6": true
     }
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "node": "current"
+              }
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.vue$": "<rootDir>/node_modules/vue-jest",
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+      "^.+\\.(js|jsx|tsk)?$": "<rootDir>/node_modules/babel-jest"
+    },
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)",
+      "<rootDir>/node_modules/"
+    ]
+  },
+  "browserslist": [
+    "> 5%",
+    "last 4 versions",
+    "ie >= 10",
+    "Firefox ESR",
+    "Safari >= 10"
+  ],
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "unit": "jest"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.6.1",
+    "axios": "^0.19.0",
+    "browser-sync": "^2.26.7",
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "cross-env": "^6.0.3",
+    "dotenv": "^8.1.0",
+    "dotenv-webpack": "^1.7.0",
+    "file-system": "^2.2.2",
+    "jest": "^24.9.0",
+    "laravel-mix": "^5.0.0",
+    "sanitize.css": "^11.0.0",
+    "sass": "^1.23.0",
+    "sass-loader": "^8.0.0",
+    "vue": "^2.6.10",
+    "vue-headful": "^2.0.1",
+    "vue-jest": "^3.0.5",
+    "vue-router": "^3.1.3",
+    "vue-template-compiler": "^2.6.10",
+    "vuex": "^3.1.1"
+  },
+  "dependencies": {
+    "@glidejs/glide": "^3.4.1",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^24.9.0",
+    "babel-preset-env": "^1.7.0",
+    "jest-serializer-vue": "^2.0.2",
+    "jest-transform-stub": "^2.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-redux": "^7.1.1",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "standard": "^14.3.1",
+    "vue-typer": "^1.2.0"
+  }
 }
