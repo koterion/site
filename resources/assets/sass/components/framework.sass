@@ -1,0 +1,20 @@
+.frameworks
+  display: flex
+  justify-content: space-around
+  align-items: center
+  min-height: calc(100vh - 14rem)
+  width: 100%
+  padding: 3rem 0
+
+  .react, .vue
+    text-align: center
+    position: relative
+    width: 40%
+    +mx-cursor
+
+    img
+      width: 100%
+      max-width: 30rem
+
+  @media (max-width: $laptop)
+    min-height: calc(100vh - 10rem)

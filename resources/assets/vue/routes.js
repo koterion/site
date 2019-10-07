@@ -4,6 +4,7 @@ import Home from './views/Home'
 import Portfolio from './views/portfolio/all'
 import PortfolioOne from './views/portfolio/one'
 import Error from './views/error/404'
+import Framework from './views/components/framework'
 
 Vue.use(Router)
 
@@ -12,6 +13,7 @@ export function createRouter () {
     mode: 'history',
     routes: [
       { path: '/', name: 'home', component: Home },
+      { path: '/framework', name: 'framework', component: Framework },
       { path: '/about-me', name: 'about-me', component: Portfolio },
       { path: '/contacts', name: 'contacts', component: Portfolio },
       { path: '/portfolio', name: 'portfolio', component: Portfolio },

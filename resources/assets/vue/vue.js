@@ -26,6 +26,25 @@ Vue.component('btn', Btn)
 const store = createStore()
 const router = createRouter()
 
+const cookies = {
+  set: function (name, value, exdays) {
+    const d = new Date()
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
+    const expires = 'expires=' + d.toUTCString()
+    document.cookie = name + '=' + value + ';' + expires + ';path=/'
+    console.log(document.cookie)
+  },
+  get: function (name) {
+    const matches = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[]\\\/+^])/g, '\\$1') + '=([^;]*)'
+    ))
+    return matches ? decodeURIComponent(matches[1]) : undefined
+  }
+}
+
+if (!cookies.get('framework')) {
+  router.push({ name: 'framework' })
+}
+
 Vue.prototype.$axios = axios
 
 Vue.mixin({
@@ -36,17 +55,28 @@ Vue.mixin({
       } else {
         elem.attachEvent('on' + event, func)
       }
+    },
+    setCookie: function (name, value, expires = 2) {
+      cookies.set(name, value, expires)
+    },
+    setFramework: function (name, value, expires = 2) {
+      this.setCookie(name, value, expires)
+      location.assign('/')
     }
   }
 })
 
 router.beforeEach((to, from, next) => {
-  store.dispatch('toggleMenu', false)
-  const transfer = document.querySelector('.transfer')
+  if (to.name !== 'framework') {
+    store.dispatch('toggleMenu', false)
+    const transfer = document.querySelector('.transfer')
 
-  if (transfer) {
-    transfer.classList.add('active')
-    setTimeout(next, 500)
+    if (transfer) {
+      transfer.classList.add('active')
+      setTimeout(next, 500)
+    } else {
+      next()
+    }
   } else {
     next()
   }

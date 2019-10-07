@@ -1,9 +1,9 @@
 <template>
   <header :class="['header',  {active: $store.state.menu} ]">
-    <div v-if="$route.name.search('.one') === -1" :class="['header__burger',  {active: $store.state.menu} ]" @click="toggleMenu">
+    <div v-if="$route.name.search('.one') === -1 && $route.name !== 'framework'" :class="['header__burger',  {active: $store.state.menu} ]" @click="toggleMenu">
       <div class="header__burger--item"></div>
     </div>
-    <router-link v-else :to="{name: $route.name.replace('.one','')}" class="header__back">
+    <router-link v-else-if="$route.name !== 'framework'" :to="{name: $route.name.replace('.one','')}" class="header__back">
       <div class="header__back--item"></div>
     </router-link>
     <router-link :to="{name: 'home'}" :tag="$route.name !== 'home' ? 'a' : 'div'" exact>
