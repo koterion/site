@@ -1,23 +1,31 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
+import getters from '../store/getters'
 
 import Vuex from 'vuex'
 import Home from '../views/Home.vue'
-import VueHeadful from 'vue-headful'
-import Router from 'vue-router'
-import { createStore } from '../store'
 
 const localVue = createLocalVue()
 
 localVue.use(Vuex)
-localVue.use(Router)
 
-localVue.component('vue-headful', VueHeadful)
+const state = {
+  display: {
+    current: 0,
+    desktop: 1230,
+    laptop: 1150,
+    pad: 992,
+    padmini: 768,
+    mobile: 568
+  }
+}
 
 describe('Home', () => {
   let store
   beforeEach(() => {
-    store = createStore()
-    store.state.display.current = 1680
+    store = new Vuex.Store({
+      state,
+      getters
+    })
   })
 
   describe('Desctop', () => {
@@ -26,13 +34,13 @@ describe('Home', () => {
     })
 
     test('Lighter is presented', () => {
-      const wrapper = shallowMount(Home, { localVue, store })
+      const wrapper = shallowMount(Home, { localVue, store, stubs: ['vue-headful', 'router-link'] })
       expect(wrapper.contains('.home__switcher')).toBe(true)
       expect(wrapper.contains('.lighter')).toBe(true)
     })
 
     test('Switcher click', () => {
-      const wrapper = shallowMount(Home, { localVue, store })
+      const wrapper = shallowMount(Home, { localVue, store, stubs: ['vue-headful', 'router-link'] })
       wrapper.find('.home__switcher').trigger('click')
       expect(wrapper.vm.light).toBe(true)
     })
@@ -44,7 +52,7 @@ describe('Home', () => {
     })
 
     test('Lighter is empty', () => {
-      const wrapper = shallowMount(Home, { localVue, store })
+      const wrapper = shallowMount(Home, { localVue, store, stubs: ['vue-headful', 'router-link'] })
       expect(wrapper.contains('.home__switcher')).toBe(false)
       expect(wrapper.contains('.lighter')).toBe(false)
     })

@@ -34,10 +34,10 @@
       <div class="clear"></div>
     </div>
     <div class="portfolio__one--footer">
-      <btn v-if="portfolio.prev" :link="{name: 'portfolio.one', params: {id: portfolio.prev}}" :text="$store.state.display.current > $store.state.display.padmini ? 'previous project' : 'previous'" :route="true"/>
-      <div v-else class="disabled btn">previous <span v-if="$store.state.display.current > $store.state.display.padmini">project</span></div>
-      <btn v-if="portfolio.next" :link="{name: 'portfolio.one', params: {id: portfolio.next}}" :text="$store.state.display.current > $store.state.display.padmini ? 'next project' : 'next'" :route="true"/>
-      <div v-else class="disabled btn">next <span v-if="$store.state.display.current > $store.state.display.padmini">project</span></div>
+      <btn v-if="portfolio.prev" :link="{name: 'portfolio.one', params: {id: portfolio.prev}}" :text="$store.getters.getDisplay('padmini') ? 'previous project' : 'previous'" :route="true"/>
+      <div v-else class="disabled btn">previous <span v-if="$store.getters.getDisplay('padmini')">project</span></div>
+      <btn v-if="portfolio.next" :link="{name: 'portfolio.one', params: {id: portfolio.next}}" :text="$store.getters.getDisplay('padmini') ? 'next project' : 'next'" :route="true"/>
+      <div v-else class="disabled btn">next <span v-if="$store.getters.getDisplay('padmini')">project</span></div>
     </div>
   </div>
 </template>

@@ -33,7 +33,7 @@
       }
     },
     mounted() {
-      if (this.$store.state.display.current > this.$store.state.display.laptop) {
+      if (this.$store.getters.getDisplay('laptop')) {
         this.moveEyes()
       }
     },

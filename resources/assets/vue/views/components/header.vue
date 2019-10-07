@@ -64,6 +64,7 @@
   import Logo from './logo'
 
   export default {
+    name: 'vue-header',
     components: { Logo },
     methods: {
       toggleMenu: function () {

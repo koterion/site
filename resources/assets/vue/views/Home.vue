@@ -17,11 +17,11 @@
       <p class="home__p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, culpa dolorem deleniti
                          aspernatur itaque! Eos corporis quidem aspernatur quibusdam expedita at dolorem omnis,
                          voluptatem quos labore dolores, saepe voluptatibus debitis!</p>
-      <figure v-if="$store.state.display.current > $store.state.display.laptop" class="home__switcher" @click="!light ? moveEyes() : destroyEyes()">
+      <figure v-if="$store.getters.getDisplay('laptop')" class="home__switcher" @click="!light ? moveEyes() : destroyEyes()">
         <img class="home__switcher--img" v-for="n in 4" :data-glitch="n" src="/img/cat-paw-stroke.svg" :alt="'cat pow ' + n">
       </figure>
     </div>
-    <div v-if="$store.state.display.current > $store.state.display.laptop" class="lighter">
+    <div v-if="this.$store.getters.getDisplay('laptop')" class="lighter">
       <figure :class="['lighter__on', {active: light}]">
         <img class="lighter__img" src="/img/lighter_on.png" alt="Lighter">
         <div class="lighter__cat">

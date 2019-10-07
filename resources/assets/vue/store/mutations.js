@@ -2,7 +2,7 @@ export default {
   changeLoading (state, data) {
     state.loading = data
   },
-  changeMenu (state, data) {
+  changeMenu (state, data = '') {
     if (typeof data === 'boolean') {
       state.menu = data
     } else {
