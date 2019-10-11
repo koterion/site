@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import Btn from '../../components/btn.jsx'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getPortfolio } from '../../store/reducers/portfolios'
 import { withRouter } from 'react-router'
 import { getOnePortfolio } from '../../store/actions'
 
@@ -94,7 +93,7 @@ Portfolio.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  portfolio: getPortfolio(state.portfolios)
+  portfolio: state.portfolios.one
 })
 
 export default withRouter(connect(mapStateToProps)(Portfolio))

@@ -3,7 +3,6 @@ import { matchPath, NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Logo from './logo.jsx'
 import { togglePortfolioAnimation, togglePortfolioTab } from '../store/actions'
-import { getPortfolioAnimation, getPortfolioTab } from '../store/reducers/portfolios'
 import PropTypes from 'prop-types'
 
 function Header (props) {
@@ -106,8 +105,8 @@ Header.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  tab: getPortfolioTab(state.portfolios),
-  animation: getPortfolioAnimation(state.portfolios)
+  tab: state.portfolios.tab,
+  animation: state.portfolios.animation
 })
 
 export default withRouter(connect(mapStateToProps)(Header))

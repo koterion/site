@@ -74,9 +74,3 @@ export default combineReducers({
   tab,
   animation
 })
-
-export const getPortfolio = state => state.one
-export const getPortfolios = state => state.all
-export const getYear = state => state.year
-export const getPortfolioTab = state => state.tab
-export const getPortfolioAnimation = state => state.animation

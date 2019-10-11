@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getPortfolios, getYear, getPortfolioTab, getPortfolioAnimation } from '../../store/reducers/portfolios'
 import { clickYearTab } from '../../store/actions'
 import Btn from '../../components/btn.jsx'
 
@@ -107,10 +106,10 @@ Portfolios.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  portfolios: getPortfolios(state.portfolios),
-  currentYear: getYear(state.portfolios),
-  tab: getPortfolioTab(state.portfolios),
-  animation: getPortfolioAnimation(state.portfolios)
+  portfolios: state.portfolios.all,
+  currentYear: state.portfolios.year,
+  tab: state.portfolios.tab,
+  animation: state.portfolios.animation
 })
 
 export default connect(mapStateToProps)(Portfolios)
