@@ -17,21 +17,6 @@ const store = createStore(
   applyMiddleware(...middleware)
 )
 
-
-let cookies = {
-  set: function (name, value, exdays) {
-    let d = new Date()
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
-    let expires = 'expires=' + d.toUTCString()
-    document.cookie = name + '=' + value + ';' + expires + ';path=/'
-  },
-  get: function (name) {
-    let matches = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[]\\\/+^])/g, '\\$1') + '=([^;]*)'
-    ))
-    return matches ? decodeURIComponent(matches[1]) : undefined
-  }
-}
-
 ReactDOM.render(
   <Provider store={store}>
     <App/>
