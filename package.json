@@ -7,6 +7,13 @@
   "license": "MIT",
   "private": true,
   "standard": {
+    "plugins": [
+      "react-hooks"
+    ],
+    "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn"
+    },
     "envs": {
       "browser": true,
       "jquery": true,
@@ -24,6 +31,9 @@
                 "node": "current"
               }
             }
+          ],
+          [
+            "@babel/preset-react"
           ]
         ]
       }
@@ -33,7 +43,6 @@
     "moduleFileExtensions": [
       "js",
       "jsx",
-      "json",
       "vue"
     ],
     "transform": {
@@ -90,10 +99,12 @@
   },
   "dependencies": {
     "@glidejs/glide": "^3.4.1",
+    "@testing-library/react": "^9.3.0",
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "^6.26.3",
     "babel-jest": "^24.9.0",
     "babel-preset-env": "^1.7.0",
+    "eslint-plugin-react-hooks": "^2.1.2",
     "jest-serializer-vue": "^2.0.2",
     "jest-transform-stub": "^2.0.0",
     "prop-types": "^15.7.2",

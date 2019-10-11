@@ -1,34 +1,31 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link, withRouter } from 'react-router-dom'
 
-class Error extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      header: {
-        title: 'Koterion | 404',
-        description: 'Not Found - 404',
-        robots: 'noindex'
-      }
+function Home (props){
+  const [light, setLight] = useState(false)
+  const header = {
+    title: 'Koterion',
+    description: 'Koterion home page',
+    robots: 'index,follow'
+  }
+
+  useEffect(() => {
+    return () => {
+      destroyEyes()
     }
+  }, [])
+
+  function moveEyes () {
+    document.addEventListener('mousemove', mathEyes)
+    setLight(!light)
   }
 
-  componentDidMount () {
-    this.moveEyes()
+  function destroyEyes () {
+    document.removeEventListener('mousemove', mathEyes)
+    setLight(!light)
   }
 
-  componentWillUnmount() {
-    this.destroyEyes()
-  }
-
-  moveEyes () {
-    document.addEventListener('mousemove', this.mathEyes)
-  }
-
-  destroyEyes () {
-    document.removeEventListener('mousemove', this.mathEyes)
-  }
-
-  mathEyes (event) {
+  function mathEyes (event) {
     const cat = document.querySelector('.lighter__cat')
     const eyeLeft = cat.querySelector('.eye__left .eye__pupil')
     const eyeRight = cat.querySelector('.eye__right .eye__pupil')
@@ -102,27 +99,53 @@ class Error extends Component {
     eyeRightLight.style.top = hor.right.toFixed() + 'px'
   }
 
-  render () {
-    return(
-      <div className="error">
-        <div className="error__block">
-          <p className="error__block--num" data-content="4">4 <span className="text">4</span></p>
-          <div className="lighter__cat">
-            <img src="/img/cat.svg" alt="Cat head"/>
-              <div className="eye__left">
-                <div className="eye__pupil"/>
-                <div className="eye__light"/>
-              </div>
-              <div className="eye__right">
-                <div className="eye__pupil"/>
-                <div className="eye__light"/>
-              </div>
-          </div>
-          <p className="error__block--num" data-content="4">4 <span className="text">4</span></p>
-        </div>
+  return (
+    <div className='home box-sm'>
+      <div className="home__text">
+        <h1 className="home__h1">I am</h1>
+        <p className="home__p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, culpa dolorem deleniti
+                               aspernatur itaque! Eos corporis quidem aspernatur quibusdam expedita at dolorem omnis,
+                               voluptatem quos labore dolores, saepe voluptatibus debitis!</p>
+        <Switcher onClick={() => !light ? moveEyes() : destroyEyes()}/>
       </div>
-    )
-  }
+      <div className="lighter">
+        <figure className={`lighter__on ${light ? 'active' : ''}`}>
+          <img className="lighter__img" src="/img/lighter_on.png" alt="Lighter"/>
+          <div className="lighter__cat">
+            <img src="/img/icon.svg" alt="Cat head"/>
+            <div className="eye__left">
+              <div className="eye__pupil"/>
+              <div className="eye__light"/>
+            </div>
+            <div className="eye__right">
+              <div className="eye__pupil"/>
+              <div className="eye__light"/>
+            </div>
+          </div>
+          <Link to="/portfolio" className="lighter__arrow">
+            <img className="lighter__arrow--img" src="/img/arrow-portfolio.svg" alt="Portfolio arrow"/>
+          </Link>
+        </figure>
+        <figure className={`lighter__off ${!light ? 'active' : ''}`}>
+          <img className="lighter__img" src="/img/lighter_off.png" alt="Lighter"/>
+        </figure>
+      </div>
+    </div>
+  )
 }
 
-export default Error
+function Switcher (props) {
+  const switcher = []
+  for (let i = 1; i < 5; i++) {
+    switcher.push(
+      <img className="home__switcher--img" data-glitch={i} src="/img/cat-paw-stroke.svg" alt={`cat pow ${i}`} key={i}/>
+    )
+  }
+  return (
+    <figure className="home__switcher" onClick={props.onClick} data-testid="map">
+      {switcher}
+    </figure>
+  )
+}
+
+export default withRouter(Home)
