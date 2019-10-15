@@ -4,6 +4,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { getOnePortfolio } from '../../store/actions'
+import Gui from '../../components/gui'
+import Card from '../../components/image/card'
+import Preview from '../../components/portfolio/preview'
 
 function Portfolio (props) {
   const header = {}
@@ -15,25 +18,15 @@ function Portfolio (props) {
 
   return (
     <div className="portfolio__one box-page">
-      <div className="carousel">
-        <div className="icons">
-          <div className="square"/>
-          <div className="triangle"/>
-          <div className="circle"/>
-        </div>
-
-        <Preview portfolio={portfolio}/>
-      </div>
+      <Card className="carousel">
+        <Preview current={portfolio.current}/>
+      </Card>
       {portfolio.current.site &&
       (<div className="carousel__after">
         <Btn className="portfolio__one--btn" link={portfolio.current.site} text="Visit the website"/>
       </div>)
       }
-      <div className="gui">
-        <h1>{portfolio.current.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: portfolio.current.content }}/>
-        <div className="clear"/>
-      </div>
+      <Gui title={portfolio.current.title} content={portfolio.current.content}/>
       <div className="portfolio__one--footer">
         {portfolio.prev ?
           (<Btn link={`${routes.portfolio.all}/${portfolio.prev}`}
@@ -54,42 +47,16 @@ function Portfolio (props) {
   )
 }
 
-function Preview (props) {
-  let { portfolio } = props
-
-  return (
-    portfolio.current.video ?
-      (<video className="portfolio__one--video" src={`/storage/${portfolio.current.video[0].download_link}`}
-              preload="auto" autoPlay loop muted/>
-      ) : (
-        <div className="glide">
-          <div className="glide__track" data-glide-el="track">
-            <div className="glide__slides">
-              {portfolio.current.carousel &&
-              portfolio.current.carousel.map((image, i) => {
-                return (
-                  <figure className="glide__slide carousel__image" key={i}>
-                    <img src={`/storage/${image}`} alt={`${portfolio.current.title} slide #${i}`}/>
-                  </figure>
-                )
-              })}
-            </div>
-          </div>
-          <div className="glide__bullets" data-glide-el="controls[nav]">
-            {portfolio.current.carousel &&
-            portfolio.current.carousel.map((image, i) => {
-              return (<button className="glide__bullet" data-glide-dir={`=${i}`}/>)
-            })}
-          </div>
-        </div>
-      )
-  )
-}
-
 Portfolio.propTypes = {
   portfolio: PropTypes.shape({
-    current: PropTypes.object
-  }).isRequired
+    current: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired
+    }).isRequired,
+    prev: PropTypes.number,
+    next: PropTypes.number
+  }).isRequired,
+  routes: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({

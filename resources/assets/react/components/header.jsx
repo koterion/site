@@ -109,4 +109,4 @@ const mapStateToProps = state => ({
   animation: state.portfolios.animation
 })
 
-export default withRouter(connect(mapStateToProps)(Header))
+export default connect(mapStateToProps)(withRouter(Header))

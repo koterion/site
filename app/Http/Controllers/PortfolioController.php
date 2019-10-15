@@ -26,12 +26,12 @@ class PortfolioController extends Controller
         $current = $portfolio->firstWhere('id', $id);
 
         if ($current) {
-            $previous = $portfolio->filter(function ($value, $key) use ($id) {
-                return $value->id < $id;
+            $previous = $portfolio->filter(function ($value, $key) use ($id, $current) {
+                return $value->id < $id && $value->year === $current->year;
             })->max('id');
 
-            $next = $portfolio->filter(function ($value, $key) use ($id) {
-                return $value->id > $id;
+            $next = $portfolio->filter(function ($value, $key) use ($id, $current) {
+                return $value->id > $id && $value->year === $current->year;
             })->min('id');
 
             $concatenated = collect([

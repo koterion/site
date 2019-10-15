@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Paw from '../components/home/paw'
+import Cat from '../components/cat'
+import Head from '../components/head'
 
-function Home (props){
+function Home (props) {
   const [light, setLight] = useState(false)
-  const header = {
-    title: 'Koterion',
-    description: 'Koterion home page',
-    robots: 'index,follow'
-  }
 
   useEffect(() => {
     return () => {
@@ -101,28 +99,19 @@ function Home (props){
 
   return (
     <div className='home box-sm'>
+      <Head name='home'/>
       <div className="home__text">
         <h1 className="home__h1">I am</h1>
         <p className="home__p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, culpa dolorem deleniti
                                aspernatur itaque! Eos corporis quidem aspernatur quibusdam expedita at dolorem omnis,
                                voluptatem quos labore dolores, saepe voluptatibus debitis!</p>
-        <Switcher onClick={() => !light ? moveEyes() : destroyEyes()}/>
+        <Paw onClick={() => !light ? moveEyes() : destroyEyes()}/>
       </div>
       <div className="lighter">
         <figure className={`lighter__on ${light ? 'active' : ''}`}>
           <img className="lighter__img" src="/img/lighter_on.png" alt="Lighter"/>
-          <div className="lighter__cat">
-            <img src="/img/icon.svg" alt="Cat head"/>
-            <div className="eye__left">
-              <div className="eye__pupil"/>
-              <div className="eye__light"/>
-            </div>
-            <div className="eye__right">
-              <div className="eye__pupil"/>
-              <div className="eye__light"/>
-            </div>
-          </div>
-          <Link to="/portfolio" className="lighter__arrow">
+          <Cat/>
+          <Link to={props.routes.portfolio} className="lighter__arrow">
             <img className="lighter__arrow--img" src="/img/arrow-portfolio.svg" alt="Portfolio arrow"/>
           </Link>
         </figure>
@@ -134,18 +123,4 @@ function Home (props){
   )
 }
 
-function Switcher (props) {
-  const switcher = []
-  for (let i = 1; i < 5; i++) {
-    switcher.push(
-      <img className="home__switcher--img" data-glitch={i} src="/img/cat-paw-stroke.svg" alt={`cat pow ${i}`} key={i}/>
-    )
-  }
-  return (
-    <figure className="home__switcher" onClick={props.onClick} data-testid="map">
-      {switcher}
-    </figure>
-  )
-}
-
-export default withRouter(Home)
+export default Home

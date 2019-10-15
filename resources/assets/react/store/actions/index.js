@@ -3,10 +3,12 @@ import * as types from '../constants/ActionTypes'
 
 const PortfolioModule = new Portfolio()
 
-const receivePortfolios = all => ({
-  type: types.RECEIVE_PORTFOLIOS,
-  all
-})
+function receivePortfolios (all) {
+  return {
+    type: types.RECEIVE_PORTFOLIOS,
+    all
+  }
+}
 
 const receivePortfolio = current => ({
   type: types.RECEIVE_PORTFOLIO,
@@ -54,46 +56,48 @@ export const clickYearTab = year => dispatch => {
 export const getOnePortfolio = (id = 1) => async (dispatch, getState) => {
   const collection = getState().portfolios.all.collection
   const all = Object.values(collection)
+  let data = {}
 
   if (all.length > 0) {
-    const data = {}
-    const prev = all.filter(el => el.id < +id)
-    const next = all.filter(el => el.id > +id)
-
     data.current = all.find(x => x.id === +id)
-
-    data.prev = prev[prev.length - 1] ? prev[prev.length - 1].id : ''
-    data.next = next[0] ? next[0].id : ''
-
-    if (data.current) {
-      if (typeof data.current.carousel === 'string') {
-        data.current.carousel = JSON.parse(data.current.carousel)
-      }
-
-      if (typeof data.current.video === 'string') {
-        data.current.video = JSON.parse(data.current.video)
-      }
-
-      dispatch(receivePortfolio(data))
-    } else {
-      throw new Error('Show Portfolio.')
-    }
+    const near = getNearbyId(all, data.current.year, id, data)
+    data = { ...data, near }
   } else {
     try {
       const response = await PortfolioModule.show(id)
-      const data = response.data
-
-      if (typeof data.current.carousel === 'string') {
-        data.current.carousel = JSON.parse(data.current.carousel)
-      }
-
-      if (typeof data.current.video === 'string') {
-        data.current.video = JSON.parse(data.current.video)
-      }
-
-      dispatch(receivePortfolio(data))
+      data = response.data
     } catch (e) {
       throw new Error('Show Portfolio.')
     }
   }
+
+  if (typeof data.current.carousel === 'string') {
+    data.current.carousel = JSON.parse(data.current.carousel)
+  }
+
+  if (typeof data.current.video === 'string') {
+    data.current.video = JSON.parse(data.current.video)
+  }
+
+  dispatch(receivePortfolio(data))
+}
+
+function getNearbyId (all, year, id, data) {
+  const currentData = data
+  const allByYear = all.filter((el) => el.year === year)
+  let prevId = 0
+  let nextId = 0
+
+  if (data.current && all.length > 0) {
+    const prev = allByYear.filter(el => el.id < +id)
+    const next = allByYear.filter(el => el.id > +id)
+
+    prevId = prev[prev.length - 1] ? prev[prev.length - 1].id : 0
+    nextId = next[0] ? next[0].id : 0
+  }
+
+  currentData.prev = prevId
+  currentData.next = nextId
+
+  return { prev: prevId, next: nextId }
 }

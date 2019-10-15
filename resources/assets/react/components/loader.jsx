@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Logo from './logo.jsx'
 import { getAllPortfolios } from '../store/actions'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 
 function Loader (props){
   const [loading, setLoading] = useState(true)
@@ -36,4 +35,4 @@ function Loader (props){
   )
 }
 
-export default connect()(withRouter(Loader))
+export default connect()(Loader)

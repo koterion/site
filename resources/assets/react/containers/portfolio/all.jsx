@@ -2,9 +2,10 @@ import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { clickYearTab } from '../../store/actions'
-import Btn from '../../components/btn.jsx'
+import Years from '../../components/portfolio/years'
+import PortfolioItem from '../../components/portfolio/item'
 
-function Portfolios (props){
+function Portfolios (props) {
   const [toggle, setToggle] = useState(true)
   const list = useRef(null)
   const { portfolios, currentYear, tab, animation, routes } = props
@@ -35,51 +36,20 @@ function Portfolios (props){
 
   return (
     <div className="portfolio box-sm">
-      <nav className="portfolio__time">
-        {Object.keys(portfolios.years).length > 0 &&
-        portfolios.years.map((year, i) => (
-          <button
-            className={`portfolio__time--item ${currentYear === year ? 'active' : ''}`}
-            onClick={() => changeYear(year)}
-            key={i}
-          >
-            {year !== portfolios.years[portfolios.years.length - 1] ? (
-              <span>{year}</span>
-            ) : (
-              <span>Now</span>
-            )}
-            <span className="dop">portfolio</span>
-          </button>
-        ))
-        }
-      </nav>
+      <Years years={portfolios.years} currentYear={currentYear} changeYear={changeYear}/>
       <div className="portfolio__block">
         <div className={`portfolio__list ${tab} ${animation ? 'active' : ''}`} ref={list}>
           {Object.keys(portfolios.group).length > 0 && currentYear &&
           portfolios.group[currentYear].map((item, i) => (
-            <div
-              className="portfolio__item"
+            <PortfolioItem
+              id={item.id}
+              title={item.title}
+              description={item.description}
+              site={item.site}
+              image={item.image}
+              routes={routes}
               key={i}
-            >
-              <div className="portfolio__item--block">
-                <h3 className="portfolio__item--title">{item.title}</h3>
-                <p className="portfolio__item--text">{item.description}</p>
-                <div className="portfolio__item--footer">
-                  <Btn className="portfolio__item--btn" link={item.site} text="Site"/>
-                  <Btn className="portfolio__item--btn" link={`${routes.portfolio.all}/${item.id}`} text="More" route={true}/>
-                </div>
-              </div>
-              <div className="portfolio__item--image">
-                <div className="icons">
-                  <div className="square"/>
-                  <div className="triangle"/>
-                  <div className="circle"/>
-                </div>
-                <figure className="image">
-                  <img src={`/storage/${item.image}`} alt={item.title}/>
-                </figure>
-              </div>
-            </div>
+            />
           ))
           }
         </div>
@@ -102,7 +72,8 @@ Portfolios.propTypes = {
   }).isRequired,
   currentYear: PropTypes.number.isRequired,
   tab: PropTypes.string.isRequired,
-  animation: PropTypes.bool.isRequired
+  animation: PropTypes.bool.isRequired,
+  routes: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({

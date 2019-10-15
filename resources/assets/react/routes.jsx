@@ -23,6 +23,14 @@ function App (props){
     error: '/'
   }
 
+  const head = {
+    home: {
+      title: 'Koterion',
+      description: 'Koterion home page',
+      robots: 'index,follow'
+    }
+  }
+
   return (
     <Router>
       <Loader />
@@ -30,7 +38,7 @@ function App (props){
       <Transfer/>
       <Switch>
         <Route path={routes.home} exact>
-          <Home/>
+          <Home routes={routes} head={head.home}/>
         </Route>
         <Route path={routes.about} exact>
           <About/>

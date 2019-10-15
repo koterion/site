@@ -1,6 +1,7 @@
 const mix = require('laravel-mix')
 const autoprefixer = require('autoprefixer')
 const Dotenv = require('dotenv-webpack')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 mix.js('resources/assets/vue/vue.js', 'public/js')
   .sass('resources/assets/sass/loader.sass', 'public/css')
@@ -10,7 +11,8 @@ mix.js('resources/assets/vue/vue.js', 'public/js')
 
   .webpackConfig({
     plugins: [
-      new Dotenv()
+      new Dotenv(),
+      // new BundleAnalyzerPlugin()
     ]
   })
 

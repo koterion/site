@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Cat from '../components/cat'
 
 function Error (props){
   const header = {
@@ -100,17 +101,7 @@ function Error (props){
     <div className="error">
       <div className="error__block">
         <p className="error__block--num" data-content="4">4 <span className="text">4</span></p>
-        <div className="lighter__cat">
-          <img src="/img/cat.svg" alt="Cat head"/>
-          <div className="eye__left">
-            <div className="eye__pupil"/>
-            <div className="eye__light"/>
-          </div>
-          <div className="eye__right">
-            <div className="eye__pupil"/>
-            <div className="eye__light"/>
-          </div>
-        </div>
+        <Cat icon="/img/cat.svg"/>
         <p className="error__block--num" data-content="4">4 <span className="text">4</span></p>
       </div>
     </div>
