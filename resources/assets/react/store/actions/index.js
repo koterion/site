@@ -1,7 +1,7 @@
-import Portfolio from '../../models/Portfolio'
 import * as types from '../constants/ActionTypes'
+import Api from '../../common/Api.service'
 
-const PortfolioModule = new Portfolio()
+const PortfolioModule = new Api('Portfolio')
 
 function receivePortfolios (all) {
   return {
@@ -60,8 +60,13 @@ export const getOnePortfolio = (id = 1) => async (dispatch, getState) => {
 
   if (all.length > 0) {
     data.current = all.find(x => x.id === +id)
-    const near = getNearbyId(all, data.current.year, id, data)
-    data = { ...data, near }
+
+    if (data.current) {
+      const near = getNearbyId(all, data.current.year, id, data)
+      data = { ...data, near }
+    } else {
+      throw new Error('Show Portfolio.')
+    }
   } else {
     try {
       const response = await PortfolioModule.show(id)

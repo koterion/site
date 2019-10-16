@@ -4,19 +4,17 @@
       '[name=robots]' : {content: header.robots}
     }"></vue-headful>
     <div class="home__text">
-      <h1 v-if="!$store.state.loading" class="home__h1">I am
+      <h1 v-if="!$store.state.loading" class="home__h1">
         <vue-typer
-          :text='["Team Lead","Front-End Developer","Koterion", "Ihor"]'
-          :pre-type-delay='40'
-          :type-delay='80'
+          :text='["Front-End Web Developer","Team Lead"]'
+          :pre-type-delay='20'
+          :type-delay='20'
           :pre-erase-delay='2000'
-          :erase-delay='50'
+          :erase-delay='20'
           erase-style='backspace'
         ></vue-typer>
       </h1>
-      <p class="home__p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, culpa dolorem deleniti
-                         aspernatur itaque! Eos corporis quidem aspernatur quibusdam expedita at dolorem omnis,
-                         voluptatem quos labore dolores, saepe voluptatibus debitis!</p>
+      <p class="home__p">Hi, my name is Ihor. Almost 5 years have passed since the first "Hello World". I developed everything from landings, small business sites to large web apps.</p>
       <figure v-if="$store.getters.getDisplay('laptop')" class="home__switcher" @click="!light ? moveEyes() : destroyEyes()">
         <img class="home__switcher--img" v-for="n in 4" :data-glitch="n" src="/img/cat-paw-stroke.svg" :alt="'cat pow ' + n">
       </figure>

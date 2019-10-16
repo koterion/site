@@ -1,6 +1,6 @@
-import Portfolio from '../../models/Portfolio'
+import Api from '../../common/Api.service'
 
-const PortfolioModule = new Portfolio()
+const Portfolio = new Api('Portfolio')
 
 export default {
   namespaced: true,
@@ -22,7 +22,7 @@ export default {
   actions: {
     async fetchPortfolio ({ commit }) {
       try {
-        const response = await PortfolioModule.index()
+        const response = await Portfolio.index()
         commit('updatePortfolio', response.data)
         commit('updateYearTab', response.data.years[response.data.years.length - 1])
       } catch (e) {
@@ -36,29 +36,27 @@ export default {
     async fetchPortfolioOne ({ commit, state }, id = 1) {
       const collection = state.all.collection
       const all = Object.values(collection)
+      let data = {}
 
       if (all.length > 0) {
-        const data = {}
-        const prev = all.filter(el => el.id < id)
-        const next = all.filter(el => el.id > id)
-
-        data.current = all.find(x => x.id === id)
-        data.prev = prev[prev.length - 1] ? prev[prev.length - 1].id : ''
-        data.next = next[0] ? next[0].id : ''
+        data.current = all.find(x => x.id === +id)
 
         if (data.current) {
-          commit('updatePortfolioOne', data)
+          const near = getNearbyId(all, data.current.year, id, data)
+          data = { ...data, near }
         } else {
           throw new Error('Show Portfolio.')
         }
       } else {
         try {
-          const response = await PortfolioModule.show(id)
-          commit('updatePortfolioOne', response.data)
+          const response = await Portfolio.show(id)
+          data = response.data
         } catch (e) {
           throw new Error('Show Portfolio.')
         }
       }
+
+      commit('updatePortfolioOne', data)
     }
   },
 
@@ -81,4 +79,24 @@ export default {
       }
     }
   }
+}
+
+function getNearbyId (all, year, id, data) {
+  const currentData = data
+  const allByYear = all.filter((el) => el.year === year)
+  let prevId = 0
+  let nextId = 0
+
+  if (data.current && all.length > 0) {
+    const prev = allByYear.filter(el => el.id < +id)
+    const next = allByYear.filter(el => el.id > +id)
+
+    prevId = prev[prev.length - 1] ? prev[prev.length - 1].id : null
+    nextId = next[0] ? next[0].id : null
+  }
+
+  currentData.prev = prevId
+  currentData.next = nextId
+
+  return { prev: prevId, next: nextId }
 }

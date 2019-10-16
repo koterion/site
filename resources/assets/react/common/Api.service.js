@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 export default class Api {
-  constructor () {
-    this.name = 'Api'
+  constructor (name = 'Api') {
+    this.name = name
   }
 
   index (url = '/api/' + this.name.toLowerCase()) {
